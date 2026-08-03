@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Astral Seyahat Rehberi</title>
+<style>
+  :root{
+    --bg:#0d1117; --card:#161b22; --accent:#8b7cf6; --accent2:#c4b5fd;
+    --text:#e6edf3; --muted:#9aa4b2; --line:#262c36; --warn:#3a2a1a; --warnb:#7a5a2a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:linear-gradient(180deg,#0d1117,#131a2b);
+    color:var(--text);line-height:1.65;padding:18px 16px 60px;-webkit-font-smoothing:antialiased;
+  }
+  header{text-align:center;padding:30px 10px 24px}
+  header h1{font-size:1.9rem;font-weight:700;background:linear-gradient(90deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:.5px}
+  header p{color:var(--muted);margin-top:8px;font-size:.95rem}
+  .disclaimer{
+    background:var(--warn);border:1px solid var(--warnb);border-radius:12px;
+    padding:14px 16px;margin:18px 0;font-size:.9rem;color:#f0d9b5;
+  }
+  .disclaimer b{color:#ffd591}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:20px 18px;margin:16px 0;box-shadow:0 4px 20px rgba(0,0,0,.3);
+  }
+  .card h2{font-size:1.15rem;color:var(--accent2);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .badge{display:inline-block;background:var(--accent);color:#fff;border-radius:20px;
+    padding:2px 11px;font-size:.78rem;font-weight:600;margin-bottom:12px}
+  ul{list-style:none}
+  li{padding:8px 0 8px 26px;position:relative;border-bottom:1px solid var(--line);font-size:.95rem}
+  li:last-child{border-bottom:none}
+  li::before{content:"";position:absolute;left:4px;top:15px;width:8px;height:8px;
+    border-radius:50%;background:var(--accent)}
+  .step{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+  .step:last-child{border-bottom:none}
+  .step .num{flex-shrink:0;width:32px;height:32px;border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),#6d5dd3);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem}
+  .step .body{flex:1}
+  .step .body strong{color:var(--accent2);display:block;margin-bottom:2px}
+  .step .body span{color:var(--muted);font-size:.9rem}
+  .yes{color:#6ee7a8} .no{color:#f7a4a4}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .two h3{font-size:.9rem;margin-bottom:6px}
+  .two li{font-size:.88rem;padding-left:22px}
+  footer{text-align:center;color:var(--muted);font-size:.82rem;margin-top:30px;padding:0 10px}
+  @media(max-width:360px){.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>✦ Astral Seyahat Rehberi ✦</h1>
+  <p>Ön hazırlık &middot; Perhiz &middot; Teknikler</p>
+</header>
+
+<div class="disclaimer">
+  <b>⚠ Önce şunu bilmelisin:</b> Astral seyahat (beden dışı deneyim) bilimsel olarak kanıtlanmış bir olgu değildir. Yaşananların bilincin ve beynin ürettiği deneyimler olduğu düşünülüyor. Aşağıdakiler spiritüel kaynaklarda anlatılan geleneksel yöntemlerdir. <b>Uzun süreli et/besin kısıtlamasına girmeden önce</b> özellikle bir sağlık sorunun varsa doktora danış; günlerce süren katı perhiz herkes için uygun değildir.
+</div>
+
+<div class="card">
+  <span class="badge">HAZIRLIK DÖNEMİ</span>
+  <h2>🥗 Beslenme / Perhiz</h2>
+  <p style="color:var(--muted);font-size:.9rem;margin-bottom:12px">
+    Kaynaklarda deneyimden günler önce hafiflemeye başlamak öneriliyor. "21 gün et yememe" gibi süreler kişiden kişiye değişen tavsiyelerdir; katı bir kural değildir. Amaç bedeni hafif ve rahat tutmaktır.
+  </p>
+  <div class="two">
+    <div>
+      <h3 class="yes">✓ Tüketilenler</h3>
+      <ul>
+        <li>Sebze ve meyveler</li>
+        <li>Havuç</li>
+        <li>Çiğ yumurta</li>
+        <li>Bol su ve sıvı</li>
+        <li>Hafif besinler</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="no">✗ Kaçınılanlar</h3>
+      <ul>
+        <li>Et</li>
+        <li>Fındık, ceviz vb. sert kuruyemiş</li>
+        <li>Gazlı / şekerli içecek</li>
+        <li>Ağır, yağlı yemekler</li>
+        <li>Tıka basa doymak</li>
+      </ul>
+    </div>
+  </div>
+  <p style="color:var(--muted);font-size:.88rem;margin-top:12px">
+    Deneyim günü: karnın <b>hafif tok</b> olsun; ne aç ne tıka basa dolu. Seyahatten birkaç saat önce hiçbir şey yememek de öneriliyor.
+  </p>
+</div>
+
+<div class="card">
+  <span class="badge">ORTAM</span>
+  <h2>🌙 Doğru Atmosfer</h2>
+  <ul>
+    <li>Sessiz, sakin ve karanlık bir oda — ışık rahatsız etmesin</li>
+    <li>En uygun zaman: sabah şafak vakti, yarı uykulu ama dinlenmiş halde (ya da uyku öncesi)</li>
+    <li>Rahat bir pozisyonda sırtüstü uzan</li>
+    <li>Vücudunda gerilim veya ağrı varsa deneme — tamamen gevşemiş olmalısın</li>
+    <li>Korku ve stres veren düşüncelerden arın</li>
+  </ul>
+</div>
+
+<div class="card">
+  <span class="badge">UYGULAMA</span>
+  <h2>🧘 Adım Adım Teknik</h2>
+
+  <div class="step"><div class="num">1</div><div class="body">
+    <strong>Derin nefes & gevşeme</strong>
+    <span>Gözlerini kapat, yavaş ve derin nefes al. Ayaklardan başlayıp tüm vücudunu adım adım gevşet. Hiçbir kasında gerilim kalmasın.</span>
+  </div></div>
+
+  <div class="step"><div class="num">2</div><div class="body">
+    <strong>Zihni sakinleştir (meditasyon)</strong>
+    <span>Düzenli nefis alışverişiyle zihnini boşalt. Negatif enerjileri bırak, tek bir odak noktasına yönel.</span>
+  </div></div>
+
+  <div class="step"><div class="num">3</div><div class="body">
+    <strong>Bedeni uyut, bilinci uyanık tut</strong>
+    <span>Vücudun uykuya geçerken bilincini açık tutmaya çalış. Bu geçişte titreşim, uğultu veya hafif felç hissi olabilir — normaldir, panikleme.</span>
+  </div></div>
+
+  <div class="step"><div class="num">4</div><div class="body">
+    <strong>İmgeleme (hayal etme)</strong>
+    <span>Yatağının kıpırdadığını, sallandığını hayal et. Bunu gerçekten hissediyormuş gibi canlandır ve kendine telkin ver.</span>
+  </div></div>
+
+  <div class="step"><div class="num">5</div><div class="body">
+    <strong>Ayrılma hissi</strong>
+    <span>Ruhunun bedeninden ayrılmaya yakın olduğunu düşün. Vücudunun titrediğini, kısa bir mesafe yükselip kendine tepeden baktığını canlandır.</span>
+  </div></div>
+
+  <div class="step"><div class="num">6</div><div class="body">
+    <strong>Sakin kal & keşfet</strong>
+    <span>Ayrıldığını hissedersen heyecanlanma — aşırı heyecan çoğu kişide deneyimi bitirir. İlk denemende evin, odan gibi tanıdık yerlerde kal.</span>
+  </div></div>
+</div>
+
+<div class="card">
+  <span class="badge">İPUÇLARI</span>
+  <h2>💡 Ek Notlar</h2>
+  <ul>
+    <li>Niyet belirle: Neden ve nereye gitmek istediğini önceden netleştir</li>
+    <li>Düzenli pratik gerekir; ilk denemede olmayabilir, sabırlı ol</li>
+    <li>Uyku felci hissi birkaç saniye sürer ve zararsızdır</li>
+    <li>Meditasyon ve nefes çalışmalarında ustalaştıkça gevşeme kısmı kolaylaşır</li>
+  </ul>
+</div>
+
+<div class="disclaimer">
+  <b>Sağlık hatırlatması:</b> Kaygı, uykusuzluk, panik atak ya da gerçeklikle bağ kopukluğu yaşıyorsan bu tekniklere yüklenmek iyi gelmeyebilir. Uzun süreli et/besin kısıtlaması yorgunluk ve besin eksikliğine yol açabilir; dengeli beslen ve gerektiğinde uzmana danış.
+</div>
+
+<footer>
+  Kişisel merak amaçlı hazırlanmıştır. Spiritüel kaynaklardan derlenmiştir.
+</footer>
+
+</body>
+</html>
