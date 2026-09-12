@@ -1,52 +1,37 @@
-const CACHE_NAME = 'english-quest-v2';
-const scopePath = new URL(self.registration.scope).pathname.replace(/\/$/, '');
-const fromScope = (path) => `${scopePath}${path}` || path;
-const APP_SHELL = [fromScope('/'), fromScope('/index.html'), fromScope('/manifest.webmanifest'), fromScope('/icons/icon.svg')];
+/* Kitaplık — çevrimdışı önbellek */
+var CACHE = "kitaplik-v1";
+var ASSETS = ["./", "./index.html", "./manifest.webmanifest", "./icon.svg"];
 
-self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)));
-  self.skipWaiting();
-});
-
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches
-      .keys()
-      .then((keys) =>
-        Promise.all(keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))),
-      ),
+self.addEventListener("install", function (e) {
+  e.waitUntil(
+    caches.open(CACHE).then(function (c) { return c.addAll(ASSETS); }).then(function () {
+      return self.skipWaiting();
+    })
   );
-  self.clients.claim();
 });
 
-self.addEventListener('fetch', (event) => {
-  if (event.request.method !== 'GET') return;
+self.addEventListener("activate", function (e) {
+  e.waitUntil(
+    caches.keys().then(function (keys) {
+      return Promise.all(keys.map(function (k) {
+        return k === CACHE ? null : caches.delete(k);
+      }));
+    }).then(function () { return self.clients.claim(); })
+  );
+});
 
-  // Sayfa istekleri: önce ağ, çevrimdışıysa önbellek (güncellemeler hemen gelsin)
-  if (event.request.mode === 'navigate') {
-    event.respondWith(
-      fetch(event.request)
-        .then((response) => {
-          const copy = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
-          return response;
-        })
-        .catch(() =>
-          caches.match(event.request).then((cached) => cached ?? caches.match(fromScope('/index.html'))),
-        ),
-    );
-    return;
-  }
-
-  // Diğer dosyalar: önce önbellek, yoksa ağdan al ve sakla
-  event.respondWith(
-    caches.match(event.request).then((cached) => {
-      if (cached) return cached;
-      return fetch(event.request).then((response) => {
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
-        return response;
+self.addEventListener("fetch", function (e) {
+  var req = e.request;
+  if (req.method !== "GET" || new URL(req.url).origin !== location.origin) return;
+  e.respondWith(
+    fetch(req).then(function (res) {
+      var copy = res.clone();
+      caches.open(CACHE).then(function (c) { c.put(req, copy); });
+      return res;
+    }).catch(function () {
+      return caches.match(req).then(function (hit) {
+        return hit || caches.match("./index.html");
       });
-    }),
+    })
   );
 });

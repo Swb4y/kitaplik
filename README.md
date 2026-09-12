@@ -1,111 +1,49 @@
-# English Quest — Sıfırdan İngilizce 🦉
+# Kitaplık 📚
 
-English Quest, **hiç İngilizce bilmeyenler** için tasarlanmış, tamamı Türkçe arayüzlü, oyunlaştırılmış bir İngilizce öğrenme uygulamasıdır. Vite, React, TypeScript ve Tailwind CSS ile geliştirilmiştir.
+**Kitaplık**, iki kişinin (ör. bir çiftin) kitaplarını birlikte takip etmesi için yapılmış küçük bir web uygulamasıdır. Hangi kitabı bitirdiniz, hangisini okuyorsunuz, sırada ne var — hepsi tek listede.
 
-Kayıt yok, ceza yok, stres yok: kendi hızında ilerlersin, ilerlemen cihazında saklanır ve uygulama çevrimdışı da çalışır (PWA).
+👉 **Yayındaki adres:** https://swb4y.github.io/english-quest/
+
+Kayıt yok, giriş yok, sunucu yok. Linki açan doğrudan kullanmaya başlar.
 
 ## Özellikler
 
-- 🇹🇷 **Tamamı Türkçe arayüz** — hiç İngilizce bilmeden rahatça kullanılır
-- 🐣 **Sıfırdan başlayan müfredat** — 12 ünite, 96 temel kelime, 48 kalıp cümle
-- 🔊 **Sesli telaffuz** — her kelime ve örnek cümle tarayıcının ses motoruyla dinlenebilir (Web Speech API)
-- 📖 **Kelime kartları** — emoji, Türkçe anlam, Türkçe harflerle okunuş ve örnek cümle
-- 🎯 **5 farklı alıştırma türü**:
-  - Çoktan seçmeli (İngilizce → Türkçe)
-  - Çoktan seçmeli (Türkçe → İngilizce)
-  - Dinleme (duyduğun kelimeyi bul)
-  - Eşleştirme (İngilizce–Türkçe çiftleri)
-  - Cümle kurma (karışık kelimelerden cümle diz)
-- 🎮 **Oyunlaştırma** — XP, seviye, günlük seri, 6 rozet, konfetili kutlamalar
-- 🔁 **Tekrar modu** — öğrendiğin kelimelerden karışık hızlı tekrar turları
-- 📔 **Kelime defteri** — öğrendiğin tüm kelimeler telaffuzlarıyla tek listede
-- 🗺️ **Ünite haritası** — her ünite bitince yenisi açılır
-- 📱 **Mobil öncelikli tasarım** — gradyanlar, animasyonlar, PWA desteği
+- 📖 **Kitap kaydı** — ad, yazar, durum, sayfa sayısı, kaçıncı sayfada olduğunuz, 5 üzerinden puan, başlama ve bitirme tarihi, not, okuyan kişi
+- 🏷️ **Dört durum** — Sırada · Okuyorum · Bitirdim · Bıraktım (her satırın solundaki kitap sırtı çizgisi durumu gösterir)
+- 📊 **Özet** — bitirilen kitap sayısı, okunan toplam sayfa, ortalama puan
+- 🔎 **Filtreler** — durum sekmeleri, kitap/yazar arama, okuyan kişiye göre süzme
+- 🔗 **Listeyi gönder** — tüm kayıtlarınızı bağlantının içine gömer; karşı taraf linki açınca "Listeye ekle" diyerek kendi listesiyle birleştirir. Aynı kitap iki tarafta varsa en son güncellenen kazanır.
+- 📱 **Ana ekrana eklenebilir** — Safari'de *Paylaş → Ana Ekrana Ekle*; uygulama gibi açılır ve çevrimdışı çalışır (PWA)
+- 🌗 **Açık ve koyu tema** — telefonun ayarına uyar
 
-## Üniteler
+## Veriler nerede duruyor?
 
-1. 👋 Selamlaşma
-2. 🔢 Sayılar
-3. 🎨 Renkler
-4. 👨‍👩‍👧 Aile
-5. 🍎 Yiyecek ve İçecek
-6. 🐶 Hayvanlar
-7. 📅 Günler
-8. 🧍 Vücudumuz
-9. 🏠 Evimiz
-10. 👕 Kıyafetler
-11. ☀️ Hava Durumu
-12. 🏙️ Şehirde
+Yalnızca uygulamayı açtığınız cihazın tarayıcısında (LocalStorage). Hiçbir veri sunucuya gitmez, hesap gerekmez. İki telefonu eşlemenin yolu **Listeyi gönder** bağlantısıdır.
 
-## Teknolojiler
+Not: Birleştirme ekleme yönünde çalışır — bir kitabı sildiğinizde bu silme karşı tarafa geçmez.
 
-- Vite + React + TypeScript
-- Tailwind CSS
-- Web Speech API (telaffuz)
-- LocalStorage (ilerleme kaydı)
-- PWA (manifest + service worker)
+## Teknik
+
+Tek dosyalık, bağımlılıksız bir uygulama. Derleme adımı yoktur.
+
+```
+docs/
+├── index.html            # uygulamanın tamamı (HTML + CSS + JS)
+├── manifest.webmanifest  # PWA künyesi
+├── sw.js                 # çevrimdışı önbellek
+└── icon*.png / icon.svg  # uygulama ikonları
+```
 
 ## Geliştirme
 
-Bağımlılıkları kur:
+Depoyu klonlayıp `docs/index.html` dosyasını doğrudan tarayıcıda açmak yeterlidir. Service worker'ın da çalışması için yerel bir sunucu kullanın:
 
 ```bash
-npm install
-```
-
-Geliştirme sunucusunu başlat:
-
-```bash
-npm run dev
-```
-
-Üretim derlemesi:
-
-```bash
-npm run build
-```
-
-Derlemeyi önizle:
-
-```bash
-npm run preview
+npx http-server docs -p 8080
 ```
 
 ## Yayınlama
 
-### GitHub Pages (docs/ klasörü)
+GitHub Pages, `main` dalının `docs/` klasöründen yayın yapar (**Settings → Pages → Deploy from a branch → main / docs**). `docs/` içindeki dosyaları değiştirip `main`'e push etmek yeterlidir; birkaç dakika içinde yayına girer.
 
-```bash
-npm run build:pages
-```
-
-Bu komut uygulamayı `docs/` klasörüne derler. Repo ayarlarından **Settings → Pages → Deploy from a branch → /docs** seçiliyse uygulama otomatik yayınlanır.
-
-### Vercel / Netlify
-
-- Build komutu: `npm run build`
-- Çıktı klasörü: `dist`
-
-## Notlar
-
-- Arka uç (backend) gerektirmez, tamamen tarayıcıda çalışır.
-- Ders içerikleri `src/data/units.ts` dosyasındadır; yeni ünite eklemek için bu dosyaya ekleme yapmak yeterlidir.
-- İlerleme yalnızca kullanılan cihazda, LocalStorage'da saklanır.
-- Telaffuz için tarayıcının Web Speech API desteği kullanılır (tüm modern tarayıcılarda mevcuttur).
-
----
-
-## 📚 Kitaplık — ortak okuma günlüğü
-
-Bu repoda, English Quest'ten bağımsız çalışan ikinci bir mini uygulama var: **Kitaplık**. İki kişinin (ör. bir çiftin) hangi kitabı bitirdiğini, hangisini okuduğunu ve sırada ne olduğunu takip etmesi için tasarlandı.
-
-- **Adres:** `docs/kitaplik/` → yayında `https://swb4y.github.io/english-quest/kitaplik/`
-- **Kayıt/giriş yok:** linki açan herkes doğrudan kullanır
-- **Veri:** yalnızca kullanılan cihazın LocalStorage'ında saklanır (sunucu yok)
-- **Eşleşme:** “Listeyi gönder” butonu, tüm kayıtları bağlantının içine gömerek paylaşır; karşı taraf linki açınca “Listeye ekle” diyerek kendi listesiyle birleştirir (aynı kayıt iki tarafta varsa en son güncellenen kazanır)
-- **PWA:** manifest + service worker; Safari'de *Paylaş → Ana Ekrana Ekle* ile uygulama gibi açılır ve çevrimdışı çalışır
-- **Tek dosya:** `docs/kitaplik/index.html` (derleme adımı yok, bağımlılık yok)
-
-Kitap kaydında tutulanlar: ad, yazar, durum (Sırada / Okuyorum / Bitirdim / Bıraktım), sayfa sayısı ve kaçıncı sayfada olunduğu, 5 üzerinden puan, başlama ve bitirme tarihi, not ve okuyan kişi.
-
-> Dikkat: `npm run build:pages` komutu `docs/` klasörünü **tamamen temizleyerek** yeniden derler (`--emptyOutDir`). English Quest'i yeniden derlemeden önce `docs/kitaplik/` klasörünü yedekleyin.
+Tüm dosya yolları göreli olduğundan uygulama, depo adı değişse de (adres `…github.io/yeni-ad/` olur) çalışmaya devam eder.
