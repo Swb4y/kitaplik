@@ -17,15 +17,15 @@ Kayıt yok, giriş yok, sunucu yok. Linki açan doğrudan kullanmaya başlar.
 - 📱 **Ana ekrana eklenebilir** — Safari'de *Paylaş → Ana Ekrana Ekle*; uygulama gibi açılır, çevrimdışı çalışır (PWA)
 - 🌸 **Mor çiçekli tema** — açık ve koyu modda çalışan bahçe temalı arayüz, kitap bitince taç yaprağı kutlaması
 
-## Canlı senkron nasıl çalışıyor?
+## Ortak liste (canlı senkron) nasıl çalışıyor?
 
-- *Canlı senkronu aç* denildiğinde uygulama rastgele isimli bir "oda" (ntfy.sh konusu) üretir — kayıt, hesap ya da sunucu kurulumu yok.
-- Liste, odaya tek bir mesaj olarak yayınlanır (gerektiğinde gzip'lenip base64 ile). Karşı taraf `EventSource` (SSE) ile aynı odayı dinlediği için değişiklik **anında** düşer; ayrıca emniyet payı olarak arada bir yoklama yapılır (akış açıkken 60 sn, sekme arkadayken 90 sn, akış yoksa 5 sn).
-- Çakışma çözümü kitap bazında **en son güncellenen kazanır** (`u` alanı). Silmeler mezar taşı (`d:1`) olarak taşındığı için karşı tarafta da silinir.
-- Depo sırası `PROVIDER_ORDER` ile belirlenir: `ntfy` (öntanımlı, ön uçuş/CORS gerektirmez), sonra `jsonblob`, sonra `kvdb`. İlk çalışan seçilir; hepsi başarısız olursa hata nedenleri ekranda yazılır.
-- **Bağlantıyı sına** düğmesi her deponun bu cihazdan çalışıp çalışmadığını tek tek dener ve sonucu listeler — hata ayıklamanın en kısa yolu.
-- Her telefonda yerel kopya (LocalStorage) her zaman durur. Oda geçmişi ntfy.sh'te ~12 saat tutulur; uygulama her açılışta kendi listesini yeniden yayınladığı için geçmiş düşse de veri kaybolmaz, iki taraf birleşerek yakınsar.
-- Odaya yalnızca eşleşme linkindeki rastgele oda adını bilen ulaşabilir. Veriler şifrelenmez; özel notları buraya yazmamak iyi olur.
+- *Yeni ortak liste başlat* kısa bir kod üretir (örn. `mavi-sumbul-2593`). Eşiniz aynı kodu yazınca ya da gönderilen eşleşme linkine dokununca aynı listeye bağlanır. Hesap, şifre, kurulum yok.
+- Oda adı kodun **SHA-256 özetinden** türetilir, yani kod hiçbir zaman adres olarak görünmez. Kodu bilmeyen odayı bulamaz.
+- Liste, odaya tek mesaj olarak yayınlanır (gerekirse gzip + base64). Karşı taraf `EventSource` (SSE) ile aynı odayı dinlediği için değişiklik **anında** düşer; emniyet payı olarak arada yoklama da yapılır (akış açıkken 60 sn, sekme arkadayken 90 sn, akış yoksa 5 sn).
+- Çakışma çözümü kitap bazında **en son güncellenen kazanır** (`u` = epoch ms). Silmeler mezar taşı (`d:1`) olarak taşındığı için karşı tarafta da silinir. `u` alanı `ts()` ile okunur — `num()` sayfa sayısını 20000'e kırptığı için zaman damgasına uygulanamaz.
+- Depo sırası: `ntfy` (öntanımlı; oda adı istemcide üretilir, `text/plain` POST olduğu için CORS ön uçuşu gerekmez), sonra `jsonblob`, sonra `kvdb`. ntfy dışındaki depolar kendi kimliklerini üretir, orada kod yerine eşleşme linki kullanılır.
+- **Bağlantıyı sına** düğmesi her depoyu tek tek dener (yaz → oku) ve sonucu ✅/❌ olarak listeler.
+- Her telefonda LocalStorage'da çevrimdışı bir kopya durur. ntfy.sh oda geçmişini ~12 saat tutar; uygulama her açılışta kendi listesini yeniden yayınladığı ve geçmişteki tüm anlık görüntüler birleştirildiği için geçmiş düşse de veri kaybolmaz.
 
 ## Teknik
 

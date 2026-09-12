@@ -553,19 +553,26 @@
 
       <div id="sync-off">
         <div class="notice-row">
-          <button class="btn" type="button" id="s-connect">Canlı senkronu aç</button>
+          <button class="btn" type="button" id="s-connect">Yeni ortak liste başlat</button>
         </div>
-        <p class="note" style="margin-top:9px">Ortak bir liste oluşturur; kurulum, hesap ya da şifre gerekmez. Sonra <b>Eşleşme linkini gönder</b> ile eşinizi davet edersiniz — ikinizin eklediği her kitap karşı tarafta birkaç saniye içinde görünür.</p>
+        <p class="note" style="margin-top:9px">Size kısa bir kod üretir (örn. <b>mor-lale-4821</b>) ve kitaplar bulutta ortak listede tutulur. Eşiniz aynı kodu yazınca — ya da gönderdiğiniz linke dokununca — iki telefon aynı listeyi canlı görür.</p>
+        <div class="field" style="margin-top:13px">
+          <label for="s-code">Eşinizden kod aldıysanız buraya yazın</label>
+          <input id="s-code" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="mor-lale-4821" />
+        </div>
+        <div class="notice-row" style="margin-top:9px">
+          <button class="btn sec" type="button" id="s-join">Bu kodla bağlan</button>
+        </div>
         <div class="err" id="s-err" hidden></div>
       </div>
 
       <div id="sync-on" hidden>
-        <p class="note">Oda kodu: <span class="room" id="s-room"></span></p>
+        <p class="note">Ortak liste kodu: <span class="room" id="s-room"></span></p>
         <div class="notice-row" style="margin-top:9px">
-          <button class="btn" type="button" id="s-pair">Eşleşme linkini gönder</button>
-          <button class="btn warn" type="button" id="s-disconnect">Senkronu kapat</button>
+          <button class="btn" type="button" id="s-pair">Eşinize link gönder</button>
+          <button class="btn warn" type="button" id="s-disconnect">Bağlantıyı kes</button>
         </div>
-        <p class="note" style="margin-top:8px">Bu linki açan kişi aynı listeye canlı bağlanır — sadece eşinize gönderin. Kitaplar ücretsiz bir bulut depoda tutulur; oda kodunu bilmeyen kimse ulaşamaz. Her telefonda ayrıca yerel bir kopya kalır.</p>
+        <p class="note" style="margin-top:8px">Eşiniz linke dokunarak ya da bu kodu yazarak katılır. Kodu bilmeyen kimse listeyi göremez. Her telefonda ayrıca çevrimdışı bir kopya durur.</p>
         <div class="err" id="s-err2" hidden></div>
       </div>
 
@@ -662,6 +669,12 @@
   function num(v) {
     var n = parseInt(v, 10);
     return isNaN(n) || n < 0 ? 0 : Math.min(n, 20000);
+  }
+
+  // Zaman damgası: num() sayfa sayısı için 20000'e kırptığı için ayrı okunur.
+  function ts(v) {
+    var n = parseInt(v, 10);
+    return isNaN(n) || n < 0 ? 0 : n;
   }
 
   function fmtDate(s) {
@@ -776,10 +789,44 @@
 
   function status(r) { if (!r.ok) throw new Error("HTTP " + r.status); return r; }
 
+  var CODE_A = ["mor", "yesil", "mavi", "sari", "pembe", "beyaz", "turuncu", "lacivert", "gumus", "altin", "bakir", "kirmizi"];
+  var CODE_B = ["lale", "papatya", "gul", "menekse", "karanfil", "sumbul", "nergis", "orkide", "yasemin", "zambak", "leylak", "manolya"];
+
+  function newCode() {
+    var buf = new Uint8Array(3);
+    if (window.crypto && window.crypto.getRandomValues) window.crypto.getRandomValues(buf);
+    else { buf[0] = Math.random() * 256; buf[1] = Math.random() * 256; buf[2] = Math.random() * 256; }
+    var n = 1000 + ((buf[2] << 8 | buf[1]) % 9000);
+    return CODE_A[buf[0] % CODE_A.length] + "-" + CODE_B[buf[1] % CODE_B.length] + "-" + n;
+  }
+
+  function normCode(code) {
+    return String(code || "").toLowerCase().replace(/\s+/g, "").replace(/[^a-z0-9._-]/g, "");
+  }
+
+  // Kod hiçbir zaman olduğu gibi adres olmaz; oda adı kodun özetinden türer.
+  function roomFromCode(code) {
+    var norm = "kitaplik/v1/" + normCode(code);
+    if (window.crypto && window.crypto.subtle && window.TextEncoder) {
+      return window.crypto.subtle.digest("SHA-256", new TextEncoder().encode(norm)).then(function (buf) {
+        var by = new Uint8Array(buf), hex = "";
+        for (var i = 0; i < 14; i++) hex += ("0" + by[i].toString(16)).slice(-2);
+        return "kitaplik-" + hex;
+      });
+    }
+    var h1 = 0x811c9dc5, h2 = 0x1000193;
+    for (var i = 0; i < norm.length; i++) {
+      h1 = ((h1 ^ norm.charCodeAt(i)) * 16777619) >>> 0;
+      h2 = ((h2 + norm.charCodeAt(i) * (i + 7)) * 2246822519) >>> 0;
+    }
+    return Promise.resolve("kitaplik-" + h1.toString(16) + h2.toString(16));
+  }
+
   /* Depolar: hiçbiri hesap istemez. ntfy önce denenir — kendi web arayüzü de
      tarayıcıdan aynı API'yi kullandığı için CORS'u kesin açıktır. */
   var PROVIDERS = {
     ntfy: {
+      key: "ntfy",
       label: "ntfy.sh",
       newId: function () { return Promise.resolve("kitaplik-" + rnd(18)); },
       read: function (id) {
@@ -816,6 +863,7 @@
       }
     },
     jsonblob: {
+      key: "jsonblob",
       label: "jsonblob.com",
       newId: function (doc) {
         return fetch("https://jsonblob.com/api/jsonBlob", {
@@ -838,6 +886,7 @@
       }
     },
     kvdb: {
+      key: "kvdb",
       label: "kvdb.io",
       newId: function () {
         return fetch("https://kvdb.io/", { method: "POST" }).then(status)
@@ -897,7 +946,7 @@
 
   function sanitize(inc, fallbackOwner) {
     if (!inc || typeof inc !== "object") return null;
-    if (inc.d) return { id: String(inc.id), d: 1, u: num(inc.u) || Date.now() };
+    if (inc.d) return { id: String(inc.id), d: 1, u: ts(inc.u) || Date.now() };
     if (!inc.t) return null;
     return {
       id: String(inc.id),
@@ -910,7 +959,7 @@
       o: inc.o ? String(inc.o).slice(0, 60) : (fallbackOwner || "Eşim"),
       sd: inc.sd ? String(inc.sd).slice(0, 10) : "",
       fd: inc.fd ? String(inc.fd).slice(0, 10) : "",
-      u: num(inc.u) || Date.now()
+      u: ts(inc.u) || Date.now()
     };
   }
 
@@ -1008,12 +1057,31 @@
     sync.pushT = setTimeout(function () { syncOnce(true).then(schedule); }, 500);
   }
 
-  function enableSync() {
-    var btn = byId("s-connect");
+  function syncBusyUI(on, label) {
+    var c = byId("s-connect"), j = byId("s-join");
+    c.disabled = on; j.disabled = on;
+    c.textContent = on ? (label || "Bağlanıyor…") : "Yeni ortak liste başlat";
+    j.textContent = on ? "Bekleyin…" : "Bu kodla bağlan";
+  }
+
+  function startNewList() { connectCode(newCode(), true); }
+
+  function joinByCode() {
+    var code = normCode(byId("s-code").value);
+    var err = byId("s-err");
+    if (code.length < 4) {
+      err.hidden = false;
+      err.textContent = "Kodu olduğu gibi yazın (örnek: mor-lale-4821).";
+      return;
+    }
+    connectCode(code, false);
+  }
+
+  // Kod tabanlı ortak liste: aynı kodu yazan iki telefon aynı odaya düşer.
+  function connectCode(code, isNew) {
     var err = byId("s-err");
     err.hidden = true;
-    btn.disabled = true;
-    btn.textContent = "Oda açılıyor…";
+    syncBusyUI(true, isNew ? "Liste açılıyor…" : "Bağlanıyor…");
     setStatus("connecting");
 
     var books = {};
@@ -1021,43 +1089,45 @@
     var doc = { v: 1, books: books, updated: Date.now() };
     var fails = [];
 
-    function done() {
-      btn.disabled = false;
-      btn.textContent = "Canlı senkronu aç";
-    }
-
-    var i = 0;
-    function attempt() {
-      if (i >= PROVIDER_ORDER.length) {
-        done();
-        err.hidden = false;
-        err.textContent = "Ortak liste açılamadı — " + fails.join(" · ") +
-          ". İnternetiniz çalışıyorsa bu servisler telefonunuzdan engelleniyor olabilir; " +
-          "aşağıdaki “Bağlantıyı sına” sonucunun ekran görüntüsünü bana gönderin.";
-        setStatus("off");
-        return;
+    roomFromCode(code).then(function (id) {
+      return PROVIDERS.ntfy.write(id, doc).then(function () {
+        return { p: "ntfy", id: id, code: code };
+      });
+    }).catch(function (e) {
+      fails.push(PROVIDERS.ntfy.label + ": " + ((e && e.message) || "hata"));
+      // Kod yöntemi çalışmazsa kimliği kendi üreten depolara düş; o zaman
+      // eşleşme kodu yerine link gönderilir.
+      var i = 1;
+      function attempt() {
+        if (i >= PROVIDER_ORDER.length) return Promise.reject(new Error(fails.join(" · ")));
+        var pv = PROVIDERS[PROVIDER_ORDER[i++]];
+        return pv.newId(doc)
+          .then(function (id) { return pv.write(id, doc).then(function () { return { p: pv.key, id: id, code: null }; }); })
+          .catch(function (e2) {
+            fails.push(pv.label + ": " + ((e2 && e2.message) || "hata"));
+            return attempt();
+          });
       }
-      var name = PROVIDER_ORDER[i++];
-      var pv = PROVIDERS[name];
-      pv.newId(doc)
-        .then(function (id) { return pv.write(id, doc).then(function () { return id; }); })
-        .then(function (id) {
-          state.sync = { p: name, id: id };
-          save();
-          done();
-          sync.first = false;
-          setStatus("live");
-          render();
-          startStream();
-          syncOnce(true).then(schedule);
-          toast("Canlı senkron açıldı. Şimdi eşleşme linkini gönderin.");
-        })
-        .catch(function (e) {
-          fails.push(pv.label + ": " + ((e && e.message) || "hata"));
-          attempt();
-        });
-    }
-    attempt();
+      return attempt();
+    }).then(function (conf) {
+      state.sync = conf;
+      save();
+      syncBusyUI(false);
+      sync.first = false;
+      setStatus("live");
+      render();
+      startStream();
+      syncOnce(true).then(schedule);
+      toast(conf.code
+        ? (isNew ? "Ortak liste hazır: " + conf.code : "Ortak listeye bağlandınız.")
+        : "Bağlandı — kod yerine eşleşme linkini gönderin.");
+    }).catch(function (e) {
+      syncBusyUI(false);
+      err.hidden = false;
+      err.textContent = "Bağlanamadı — " + ((e && e.message) || "hata") +
+        ". İnternetiniz çalışıyorsa aşağıdaki “Bağlantıyı sına” sonucunun ekran görüntüsünü bana gönderin.";
+      setStatus("off");
+    });
   }
 
   /* Canlı akış (destekleyen depolarda anında bildirim) */
@@ -1128,7 +1198,8 @@
 
   function pairLink() {
     if (!cfg()) return "";
-    return location.origin + location.pathname + "#s=" + encode({ v: 1, p: cfg().p, id: cfg().id, from: state.me });
+    return location.origin + location.pathname + "#s=" +
+      encode({ v: 1, p: cfg().p, id: cfg().id, code: cfg().code || null, from: state.me });
   }
 
   function sendPair() {
@@ -1202,7 +1273,9 @@
     try {
       if (ms) {
         var d = decode(ms[1]);
-        if (d && d.id && PROVIDERS[d.p]) pairing = { p: d.p, id: String(d.id), from: d.from || "" };
+        if (d && d.id && PROVIDERS[d.p]) {
+          pairing = { p: d.p, id: String(d.id), code: d.code ? String(d.code) : null, from: d.from || "" };
+        }
       } else if (mp) {
         var data = decode(mp[1]);
         if (data && Array.isArray(data.books) && data.books.length) incoming = { from: data.from, books: data.books };
@@ -1215,7 +1288,7 @@
 
   function acceptPair() {
     if (!pairing) return;
-    state.sync = { p: pairing.p, id: pairing.id };
+    state.sync = { p: pairing.p, id: pairing.id, code: pairing.code || null };
     var from = pairing.from;
     pairing = null;
     save();
@@ -1394,6 +1467,12 @@
         '<div class="notice-row"><button class="btn" type="button" id="n-merge">Listeye ekle</button>' +
         '<button class="btn sec" type="button" id="n-skip2">Şimdi değil</button></div></div>';
     }
+    if (!cfg() && !state.hints.nosync && !pairing) {
+      html += '<div class="notice"><p><b>Ortak liste kurulmadı.</b> Şu an kitaplar yalnızca bu telefonda. ' +
+        "Eşinizle aynı listeyi canlı görmek için ortak listeyi açın.</p>" +
+        '<div class="notice-row"><button class="btn" type="button" id="n-sync">Ortak listeyi aç</button>' +
+        '<button class="btn sec" type="button" id="n-nosync">Gerek yok</button></div></div>';
+    }
     if (sync.status === "error") {
       html += '<div class="notice"><div class="hint"><span>Ortak listeye ulaşılamıyor (' + esc(sync.msg || "bağlantı yok") +
         "). Kayıtlarınız bu telefonda güvende; bağlantı gelince kendiliğinden eşitlenir.</span>" +
@@ -1416,13 +1495,13 @@
     var labels = {
       off: "Kapalı — kayıtlar yalnızca bu telefonda.",
       connecting: "Bağlanıyor…",
-      live: "Açık — iki telefon canlı eşitleniyor.",
+      live: "Açık — kitaplar ortak listede, iki telefon canlı eşitleniyor.",
       error: "Bağlantı kurulamadı: " + (sync.msg || "internet yok") + ". Kayıtlar bu telefonda duruyor."
     };
     byId("sync-state").textContent = labels[sync.status] || labels.off;
     byId("sync-off").hidden = on;
     byId("sync-on").hidden = !on;
-    if (on) byId("s-room").textContent = cfg().p + " / " + cfg().id;
+    if (on) byId("s-room").textContent = cfg().code || "(kod yok — eşleşme linki kullanın)";
   }
 
   /* ---------------- kutlama ---------------- */
@@ -1460,7 +1539,10 @@
 
   function openSettings() {
     byId("s-me").value = state.me;
-    byId("s-count").textContent = state.books.filter(real).length + " kayıt bu telefonda saklanıyor.";
+    var n = state.books.filter(real).length;
+    byId("s-count").textContent = cfg()
+      ? n + " kitap ortak listede — her telefonda çevrimdışı kopyası da var."
+      : n + " kitap yalnızca bu telefonda kayıtlı.";
     renderSyncPanel();
     openSheet("ov-set");
   }
@@ -1598,6 +1680,8 @@
 
   function onNoticeClick(e) {
     var id = e.target.id;
+    if (id === "n-sync") { openSettings(); return; }
+    if (id === "n-nosync") { state.hints.nosync = 1; save(); renderNotices(); return; }
     if (id === "n-pair") acceptPair();
     else if (id === "n-merge") mergeIncoming();
     else if (id === "n-skip") { pairing = null; renderNotices(); }
@@ -1614,7 +1698,8 @@
   el.hintBottom.addEventListener("click", onNoticeClick);
 
   byId("btn-add").addEventListener("click", function () { openBook(null); });
-  byId("s-connect").addEventListener("click", enableSync);
+  byId("s-connect").addEventListener("click", startNewList);
+  byId("s-join").addEventListener("click", joinByCode);
   byId("s-probe").addEventListener("click", probe);
   byId("s-disconnect").addEventListener("click", disableSync);
   byId("s-pair").addEventListener("click", sendPair);
