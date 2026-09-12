@@ -1,5 +1,5 @@
 /* Kitaplık — çevrimdışı önbellek */
-var CACHE = "kitaplik-v1";
+var CACHE = "kitaplik-v3";
 var ASSETS = ["./", "./index.html", "./manifest.webmanifest", "./icon.svg"];
 
 self.addEventListener("install", function (e) {

@@ -1,9 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Kitaplık">
-  <rect width="512" height="512" rx="112" fill="#17594a"/>
-  <g transform="translate(96 112)">
-    <rect x="0" y="0" width="72" height="288" rx="10" fill="#eff1ec"/>
-    <rect x="88" y="34" width="72" height="254" rx="10" fill="#b87333"/>
-    <rect x="176" y="66" width="72" height="222" rx="10" fill="#dbe8e2"/>
-    <rect x="0" y="288" width="320" height="16" rx="8" fill="#0d3b31"/>
+  <rect width="512" height="512" rx="112" fill="#6d3bbf"/>
+  <g transform="translate(84 150)">
+    <rect x="0" y="0" width="66" height="250" rx="10" fill="#f6f2fb"/>
+    <rect x="82" y="30" width="66" height="220" rx="10" fill="#e3a72f"/>
+    <rect x="164" y="58" width="66" height="192" rx="10" fill="#c9aef5"/>
+    <rect x="0" y="250" width="296" height="16" rx="8" fill="#4a2588"/>
+  </g>
+  <g transform="translate(398 112)" fill="#ece0fd">
+    <circle cx="0" cy="-30" r="26"/>
+    <circle cx="28.5" cy="-9.3" r="26"/>
+    <circle cx="17.6" cy="24.3" r="26"/>
+    <circle cx="-17.6" cy="24.3" r="26"/>
+    <circle cx="-28.5" cy="-9.3" r="26"/>
+    <circle r="16" fill="#e3a72f"/>
   </g>
 </svg>

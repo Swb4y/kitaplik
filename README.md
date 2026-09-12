@@ -1,6 +1,6 @@
 # Kitaplık 📚
 
-**Kitaplık**, iki kişinin (ör. bir çiftin) kitaplarını birlikte takip etmesi için yapılmış küçük bir web uygulamasıdır. Hangi kitabı bitirdiniz, hangisini okuyorsunuz, sırada ne var — hepsi tek listede.
+**Kitaplık**, iki kişinin (ör. bir çiftin) kitaplarını birlikte takip etmesi için yapılmış küçük bir web uygulamasıdır. Hangi kitabı bitirdiniz, hangisini okuyorsunuz, sırada ne var — hepsi tek listede, iki telefonda canlı olarak.
 
 👉 **Yayındaki adres:** https://swb4y.github.io/kitaplik/
 
@@ -8,19 +8,22 @@ Kayıt yok, giriş yok, sunucu yok. Linki açan doğrudan kullanmaya başlar.
 
 ## Özellikler
 
+- 🔄 **Canlı senkron** — iki telefon aynı listeyi paylaşır; biri kitap eklediğinde diğerinde birkaç saniye içinde görünür. Kurulum, hesap ya da şifre gerekmez: *Ayarlar → Canlı senkronu aç* → *Eşleşme linkini gönder*.
 - 📖 **Kitap kaydı** — ad, yazar, durum, sayfa sayısı, kaçıncı sayfada olduğunuz, 5 üzerinden puan, başlama ve bitirme tarihi, not, okuyan kişi
-- 🏷️ **Dört durum** — Sırada · Okuyorum · Bitirdim · Bıraktım (her satırın solundaki kitap sırtı çizgisi durumu gösterir)
+- 🏷️ **Dört durum** — Sırada · Okuyorum · Bitirdim · Bıraktım (satırın solundaki kitap sırtı çizgisi durumu gösterir)
 - 📊 **Özet** — bitirilen kitap sayısı, okunan toplam sayfa, ortalama puan
 - 🔎 **Filtreler** — durum sekmeleri, kitap/yazar arama, okuyan kişiye göre süzme
-- 🔗 **Listeyi gönder** — tüm kayıtlarınızı bağlantının içine gömer; karşı taraf linki açınca "Listeye ekle" diyerek kendi listesiyle birleştirir. Aynı kitap iki tarafta varsa en son güncellenen kazanır.
-- 📱 **Ana ekrana eklenebilir** — Safari'de *Paylaş → Ana Ekrana Ekle*; uygulama gibi açılır ve çevrimdışı çalışır (PWA)
-- 🌗 **Açık ve koyu tema** — telefonun ayarına uyar
+- 🔗 **Link ile paylaşma** — senkron kapalıyken de tüm liste bir bağlantının içinde gönderilip karşı tarafta birleştirilebilir
+- 📱 **Ana ekrana eklenebilir** — Safari'de *Paylaş → Ana Ekrana Ekle*; uygulama gibi açılır, çevrimdışı çalışır (PWA)
+- 🌸 **Mor çiçekli tema** — açık ve koyu modda çalışan bahçe temalı arayüz, kitap bitince taç yaprağı kutlaması
 
-## Veriler nerede duruyor?
+## Canlı senkron nasıl çalışıyor?
 
-Yalnızca uygulamayı açtığınız cihazın tarayıcısında (LocalStorage). Hiçbir veri sunucuya gitmez, hesap gerekmez. İki telefonu eşlemenin yolu **Listeyi gönder** bağlantısıdır.
-
-Not: Birleştirme ekleme yönünde çalışır — bir kitabı sildiğinizde bu silme karşı tarafa geçmez.
+- *Canlı senkronu aç* denildiğinde uygulama, hesap gerektirmeyen ücretsiz bir bulut depoda (önce `kvdb.io`, olmazsa `jsonblob.com`) rastgele kimlikli bir "oda" açar ve listeyi oraya yazar.
+- Her telefon odayı 5 saniyede bir okur (sekme arkadayken 45 saniye), gelen kayıtları işler ve kendi değişikliklerini yazar.
+- Çakışma çözümü kitap bazında **en son güncellenen kazanır** (`u` alanı). Silmeler mezar taşı (`d:1`) olarak yazıldığı için karşı tarafta da silinir.
+- Her telefonda yerel bir kopya (LocalStorage) her zaman durur; internet ya da servis kesilse bile kayıtlar kaybolmaz, bağlantı gelince kendiliğinden eşitlenir.
+- Odaya yalnızca eşleşme linkindeki rastgele oda kodunu bilen ulaşabilir. Veriler şifrelenmediği için özel notları buraya yazmamak iyi olur.
 
 ## Teknik
 

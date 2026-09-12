@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta name="description" content="İki kişilik ortak okuma günlüğü: hangi kitabı bitirdin, hangisini okuyorsun, sırada ne var." />
-<meta name="theme-color" content="#eff1ec" media="(prefers-color-scheme: light)" />
-<meta name="theme-color" content="#101614" media="(prefers-color-scheme: dark)" />
+<meta name="description" content="İkimizin ortak okuma bahçesi: hangi kitabı bitirdin, hangisini okuyorsun, sırada ne var — canlı olarak." />
+<meta name="theme-color" content="#f6f2fb" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#141021" media="(prefers-color-scheme: dark)" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -17,70 +17,82 @@
 <title>Kitaplık</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=Newsreader:wght@500;600&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Nunito:wght@400;600;700&display=swap" />
 <style>
   :root {
-    --bg: #eff1ec;
+    --bg: #f6f2fb;
+    --bg-2: #efe6fb;
     --surface: #ffffff;
-    --surface-2: #f7f8f4;
-    --ink: #14201c;
-    --muted: #5e6b64;
-    --faint: #8b968f;
-    --line: #d9ded6;
-    --line-soft: #e6eae2;
-    --accent: #17594a;
+    --surface-2: #f9f5fe;
+    --ink: #241b33;
+    --muted: #655a78;
+    --faint: #9188a6;
+    --line: #e4d9f4;
+    --line-soft: #efe8f8;
+    --accent: #6d3bbf;
     --accent-ink: #ffffff;
-    --accent-soft: #dbe8e2;
-    --s-plan: #4a6fa5;
-    --s-reading: #b87333;
-    --s-done: #17594a;
-    --s-dropped: #9b5f5a;
-    --shadow: 0 10px 30px -14px rgba(20, 32, 28, .35);
-    --sheet-shadow: 0 -8px 40px -10px rgba(20, 32, 28, .3);
-    --sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-    --serif: "Newsreader", Georgia, "Times New Roman", serif;
+    --accent-soft: #ece0fd;
+    --petal: #c04fa0;
+    --leaf: #4c9a6a;
+    --honey: #d99524;
+    --s-plan: #7b6bd6;
+    --s-reading: #d99524;
+    --s-done: #4c9a6a;
+    --s-dropped: #a0798f;
+    --shadow: 0 12px 30px -16px rgba(45, 22, 82, .4);
+    --sheet-shadow: 0 -10px 44px -12px rgba(45, 22, 82, .32);
+    --sans: "Nunito", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --serif: "Fraunces", Georgia, "Times New Roman", serif;
     --mono: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
-    --r: 14px;
+    --r: 18px;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #101614;
-      --surface: #18211e;
-      --surface-2: #1d2724;
-      --ink: #e8ede9;
-      --muted: #9ba8a1;
-      --faint: #76837c;
-      --line: #27332f;
-      --line-soft: #202a27;
-      --accent: #6fbfa5;
-      --accent-ink: #0c1512;
-      --accent-soft: #1e332c;
-      --s-plan: #85a5d6;
-      --s-reading: #d9a05b;
-      --s-done: #6fbfa5;
-      --s-dropped: #c98f89;
-      --shadow: 0 10px 30px -14px rgba(0, 0, 0, .6);
-      --sheet-shadow: 0 -8px 40px -10px rgba(0, 0, 0, .7);
+      --bg: #141021;
+      --bg-2: #1d1533;
+      --surface: #1e1833;
+      --surface-2: #251d3d;
+      --ink: #efeaf8;
+      --muted: #a99cc2;
+      --faint: #7d719a;
+      --line: #322752;
+      --line-soft: #2a2144;
+      --accent: #b79bf5;
+      --accent-ink: #1b1230;
+      --accent-soft: #2d2350;
+      --petal: #e07ac0;
+      --leaf: #6fc492;
+      --honey: #e8b455;
+      --s-plan: #9b8bea;
+      --s-reading: #e8b455;
+      --s-done: #6fc492;
+      --s-dropped: #c49cb4;
+      --shadow: 0 12px 30px -16px rgba(0, 0, 0, .7);
+      --sheet-shadow: 0 -10px 44px -12px rgba(0, 0, 0, .75);
     }
   }
   :root[data-theme="dark"] {
-    --bg: #101614;
-    --surface: #18211e;
-    --surface-2: #1d2724;
-    --ink: #e8ede9;
-    --muted: #9ba8a1;
-    --faint: #76837c;
-    --line: #27332f;
-    --line-soft: #202a27;
-    --accent: #6fbfa5;
-    --accent-ink: #0c1512;
-    --accent-soft: #1e332c;
-    --s-plan: #85a5d6;
-    --s-reading: #d9a05b;
-    --s-done: #6fbfa5;
-    --s-dropped: #c98f89;
-    --shadow: 0 10px 30px -14px rgba(0, 0, 0, .6);
-    --sheet-shadow: 0 -8px 40px -10px rgba(0, 0, 0, .7);
+    --bg: #141021;
+    --bg-2: #1d1533;
+    --surface: #1e1833;
+    --surface-2: #251d3d;
+    --ink: #efeaf8;
+    --muted: #a99cc2;
+    --faint: #7d719a;
+    --line: #322752;
+    --line-soft: #2a2144;
+    --accent: #b79bf5;
+    --accent-ink: #1b1230;
+    --accent-soft: #2d2350;
+    --petal: #e07ac0;
+    --leaf: #6fc492;
+    --honey: #e8b455;
+    --s-plan: #9b8bea;
+    --s-reading: #e8b455;
+    --s-done: #6fc492;
+    --s-dropped: #c49cb4;
+    --shadow: 0 12px 30px -16px rgba(0, 0, 0, .7);
+    --sheet-shadow: 0 -10px 44px -12px rgba(0, 0, 0, .75);
   }
 
   * { box-sizing: border-box; }
@@ -89,129 +101,177 @@
   body {
     margin: 0;
     background: var(--bg);
+    background-image: radial-gradient(120% 260px at 50% -40px, var(--bg-2), var(--bg) 70%);
+    background-repeat: no-repeat;
     color: var(--ink);
     font-family: var(--sans);
     font-size: 16px;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
   }
+  button, input, textarea, select { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+
+  /* ---------- bahçe şeridi ---------- */
+  .garden { position: relative; height: 104px; overflow: hidden; }
+  .garden svg.band { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .petal-1 { fill: var(--accent); opacity: .5; }
+  .petal-2 { fill: var(--petal); opacity: .45; }
+  .petal-3 { fill: var(--honey); opacity: .5; }
+  .core { fill: var(--honey); }
+  .core-2 { fill: var(--surface); }
+  .stem { stroke: var(--leaf); stroke-width: 2.2; fill: none; opacity: .6; stroke-linecap: round; }
+  .leaf { fill: var(--leaf); opacity: .5; }
+  .bug { position: absolute; width: 26px; height: 26px; }
+  .bug.lady { right: 12%; top: 46px; animation: bob 3.4s ease-in-out infinite; }
+  .bug.bee { left: 8%; top: 26px; width: 22px; height: 22px; animation: drift 14s ease-in-out infinite; }
+  @keyframes bob { 0%, 100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-5px) rotate(4deg); } }
+  @keyframes drift {
+    0%   { transform: translate(0, 0) rotate(-6deg); }
+    25%  { transform: translate(42vw, 14px) rotate(6deg); }
+    50%  { transform: translate(70vw, -6px) rotate(-4deg); }
+    75%  { transform: translate(30vw, 18px) rotate(8deg); }
+    100% { transform: translate(0, 0) rotate(-6deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bug.lady, .bug.bee { animation: none; }
+  }
+
   .wrap {
     max-width: 660px;
     margin: 0 auto;
     padding-inline: 18px;
-    padding-block: 22px calc(104px + env(safe-area-inset-bottom, 0px));
+    padding-block: 0 calc(108px + env(safe-area-inset-bottom, 0px));
     display: flex;
     flex-direction: column;
     gap: 18px;
   }
-  button, input, textarea, select { font: inherit; color: inherit; }
-  button { cursor: pointer; }
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
 
-  /* ---------- header ---------- */
-  .top { display: flex; align-items: flex-end; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
-  .eyebrow {
-    font-size: .66rem; letter-spacing: .16em; text-transform: uppercase;
-    color: var(--faint); margin: 0 0 2px;
-  }
+  /* ---------- başlık ---------- */
+  .top { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: -14px; }
+  .eyebrow { font-size: .66rem; letter-spacing: .16em; text-transform: uppercase; color: var(--faint); margin: 0 0 1px; }
   h1 {
-    font-family: var(--serif); font-weight: 600; font-size: 2.1rem;
-    line-height: 1.05; margin: 0; letter-spacing: -.01em; text-wrap: balance;
+    font-family: var(--serif); font-weight: 600; font-size: 2.25rem;
+    line-height: 1; margin: 0; letter-spacing: -.015em; text-wrap: balance;
   }
   .top-actions { display: flex; gap: 8px; align-items: center; }
   .ghost {
-    background: transparent; border: 1px solid var(--line); border-radius: 999px;
-    padding: 7px 13px; font-size: .84rem; font-weight: 500; color: var(--muted);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
+    padding: 7px 13px; font-size: .84rem; font-weight: 600; color: var(--muted);
     display: inline-flex; align-items: center; gap: 6px;
   }
   .ghost:hover { border-color: var(--accent); color: var(--accent); }
   .ghost strong { font-weight: 700; color: var(--ink); }
-
-  /* ---------- stats ---------- */
-  .stats { display: grid; grid-template-columns: repeat(3, 1fr); }
-  .stat { padding: 2px 12px; }
-  .stat:first-child { padding-left: 0; }
-  .stat + .stat { border-left: 1px solid var(--line); }
-  .stat-v { font-family: var(--mono); font-weight: 500; font-size: 1.4rem; font-variant-numeric: tabular-nums; line-height: 1.2; }
-  .stat-v span { font-family: var(--sans); font-size: .78rem; color: var(--muted); font-weight: 400; }
-  .stat-l {
-    font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--faint);
-    margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  .pill-live {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
+    padding: 7px 12px; font-size: .8rem; font-weight: 700; color: var(--muted);
+    display: inline-flex; align-items: center; gap: 7px;
   }
+  .pill-live .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--faint); flex: 0 0 auto; }
+  .pill-live[data-st="live"] { color: var(--leaf); border-color: var(--leaf); }
+  .pill-live[data-st="live"] .dot { background: var(--leaf); animation: pulse 2s ease-in-out infinite; }
+  .pill-live[data-st="connecting"] { color: var(--honey); border-color: var(--honey); }
+  .pill-live[data-st="connecting"] .dot { background: var(--honey); }
+  .pill-live[data-st="error"] { color: var(--s-dropped); border-color: var(--s-dropped); }
+  .pill-live[data-st="error"] .dot { background: var(--s-dropped); }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+  @media (prefers-reduced-motion: reduce) { .pill-live .dot { animation: none !important; } }
 
-  /* ---------- filters ---------- */
+  /* ---------- özet ---------- */
+  .stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--r); padding: 13px 6px; box-shadow: var(--shadow);
+  }
+  .stat { padding: 0 10px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .stat + .stat { border-left: 1px solid var(--line-soft); }
+  .stat-v { font-family: var(--mono); font-weight: 500; font-size: 1.38rem; font-variant-numeric: tabular-nums; line-height: 1.15; }
+  .stat-v span { font-family: var(--sans); font-size: .76rem; color: var(--muted); font-weight: 600; }
+  .stat-l {
+    font-size: .57rem; letter-spacing: .07em; text-transform: uppercase; color: var(--faint);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .stat-l svg { width: 11px; height: 11px; flex: 0 0 auto; }
+
+  /* ---------- filtreler ---------- */
   .bar { display: flex; flex-direction: column; gap: 10px; }
   .tabs { display: flex; gap: 7px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; margin-inline: -18px; padding-inline: 18px; }
   .tabs::-webkit-scrollbar { display: none; }
   .tab {
-    flex: 0 0 auto; background: transparent; border: 1px solid var(--line);
-    border-radius: 999px; padding: 7px 14px; font-size: .86rem; font-weight: 500;
+    flex: 0 0 auto; background: var(--surface); border: 1px solid var(--line);
+    border-radius: 999px; padding: 7px 14px; font-size: .86rem; font-weight: 600;
     color: var(--muted); white-space: nowrap; display: inline-flex; gap: 7px; align-items: center;
   }
-  .tab .n { font-family: var(--mono); font-size: .76rem; color: var(--faint); font-variant-numeric: tabular-nums; }
+  .tab .n { font-family: var(--mono); font-size: .75rem; color: var(--faint); font-variant-numeric: tabular-nums; }
   .tab[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
-  .tab[aria-selected="true"] .n { color: var(--accent-ink); opacity: .75; }
+  .tab[aria-selected="true"] .n { color: var(--accent-ink); opacity: .8; }
   .search {
     width: 100%; background: var(--surface); border: 1px solid var(--line);
-    border-radius: 999px; padding: 10px 15px; font-size: .92rem;
+    border-radius: 999px; padding: 11px 16px; font-size: .92rem;
   }
   .search::placeholder { color: var(--faint); }
   .readers { display: flex; gap: 7px; flex-wrap: wrap; }
   .reader {
     background: transparent; border: 1px dashed var(--line); border-radius: 999px;
-    padding: 5px 12px; font-size: .8rem; color: var(--muted);
+    padding: 5px 12px; font-size: .8rem; font-weight: 600; color: var(--muted);
   }
   .reader[aria-pressed="true"] { border-style: solid; border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
 
-  /* ---------- list ---------- */
-  .list { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+  /* ---------- liste ---------- */
+  .list {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow);
+  }
   .book {
-    width: 100%; display: grid; grid-template-columns: 3px 1fr auto;
+    width: 100%; display: grid; grid-template-columns: 4px 1fr auto;
     gap: 0 14px; align-items: stretch; text-align: left;
     background: transparent; border: 0; border-top: 1px solid var(--line-soft);
     padding: 0; color: inherit;
   }
   .book:first-child { border-top: 0; }
   .book:hover { background: var(--surface-2); }
-  .spine { border-radius: 0 3px 3px 0; background: var(--s-plan); }
+  .book.flash { animation: flash 1.6s ease-out; }
+  @keyframes flash { 0% { background: var(--accent-soft); } 100% { background: transparent; } }
+  @media (prefers-reduced-motion: reduce) { .book.flash { animation: none; } }
+  .spine { border-radius: 0 4px 4px 0; background: var(--s-plan); }
   .book[data-s="reading"] .spine { background: var(--s-reading); }
   .book[data-s="done"] .spine { background: var(--s-done); }
-  .book[data-s="dropped"] .spine { background: var(--s-dropped); opacity: .55; }
-  .bk-main { padding: 13px 0 14px 0; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
-  .bk-title {
-    font-family: var(--serif); font-size: 1.08rem; font-weight: 600; line-height: 1.25;
-    overflow-wrap: anywhere;
-  }
+  .book[data-s="dropped"] .spine { background: var(--s-dropped); opacity: .5; }
+  .bk-main { padding: 13px 0 14px; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .bk-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; line-height: 1.22; overflow-wrap: anywhere; }
   .book[data-s="dropped"] .bk-title { color: var(--muted); }
   .bk-author { font-size: .82rem; color: var(--muted); overflow-wrap: anywhere; }
   .bk-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 5px; font-size: .76rem; color: var(--faint); }
   .bk-meta .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
-  .prog { width: 74px; height: 3px; border-radius: 2px; background: var(--line); overflow: hidden; flex: 0 0 auto; }
-  .prog i { display: block; height: 100%; background: var(--s-reading); }
-  .stars { letter-spacing: .06em; color: var(--s-done); font-size: .84rem; }
+  .bk-meta svg { width: 12px; height: 12px; }
+  .prog { width: 72px; height: 4px; border-radius: 3px; background: var(--line); overflow: hidden; flex: 0 0 auto; }
+  .prog i { display: block; height: 100%; background: var(--s-reading); border-radius: 3px; }
+  .stars { letter-spacing: .06em; color: var(--honey); font-size: .86rem; }
   .stars i { color: var(--line); font-style: normal; }
   .bk-side { padding: 14px 14px 14px 0; display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; gap: 6px; }
   .who {
-    font-size: .64rem; letter-spacing: .08em; text-transform: uppercase;
-    color: var(--muted); background: var(--surface-2); border: 1px solid var(--line-soft);
-    border-radius: 999px; padding: 3px 8px; white-space: nowrap;
+    font-size: .64rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 700;
+    color: var(--accent); background: var(--accent-soft); border-radius: 999px;
+    padding: 3px 9px; white-space: nowrap;
   }
   .chip-ex { font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); }
 
-  .empty { padding: 34px 20px; text-align: center; color: var(--muted); }
-  .empty p { margin: 0 0 4px; font-family: var(--serif); font-size: 1.15rem; color: var(--ink); }
-  .empty small { font-size: .84rem; }
+  .empty { padding: 30px 20px 34px; text-align: center; color: var(--muted); }
+  .empty svg { width: 54px; height: 54px; margin-bottom: 6px; }
+  .empty p { margin: 0 0 4px; font-family: var(--serif); font-size: 1.2rem; color: var(--ink); }
+  .empty small { font-size: .85rem; }
 
-  /* ---------- notices ---------- */
+  /* ---------- bildirimler ---------- */
+  #notices { display: flex; flex-direction: column; gap: 10px; }
+  #notices:empty, #hint-bottom:empty { display: none; }
   .notice {
     border: 1px solid var(--line); background: var(--surface); border-radius: var(--r);
-    padding: 11px 14px; display: flex; flex-direction: column; gap: 10px;
+    padding: 12px 15px; display: flex; flex-direction: column; gap: 10px;
   }
-  #notices:empty, #hint-bottom:empty { display: none; }
-  #notices { display: flex; flex-direction: column; gap: 10px; }
   .notice.merge { border-color: var(--accent); background: var(--accent-soft); }
   .notice p { margin: 0; font-size: .9rem; }
-  .notice p b { font-weight: 700; }
   .notice-row { display: flex; gap: 8px; flex-wrap: wrap; }
   .hint {
     display: flex; gap: 12px; align-items: baseline; justify-content: space-between;
@@ -222,10 +282,10 @@
     font-size: .78rem; padding: 0; white-space: nowrap; flex: 0 0 auto;
   }
 
-  /* ---------- buttons ---------- */
+  /* ---------- düğmeler ---------- */
   .btn {
     background: var(--accent); color: var(--accent-ink); border: 1px solid var(--accent);
-    border-radius: 999px; padding: 9px 16px; font-size: .88rem; font-weight: 500;
+    border-radius: 999px; padding: 10px 17px; font-size: .88rem; font-weight: 700;
   }
   .btn.sec { background: transparent; color: var(--accent); }
   .btn.warn { background: transparent; color: var(--s-dropped); border-color: var(--s-dropped); }
@@ -233,36 +293,35 @@
     position: fixed; right: max(18px, calc(50% - 330px + 18px));
     bottom: calc(18px + env(safe-area-inset-bottom, 0px));
     background: var(--accent); color: var(--accent-ink); border: 0;
-    border-radius: 999px; padding: 14px 20px; font-size: .95rem; font-weight: 700;
-    box-shadow: var(--shadow); z-index: 20;
+    border-radius: 999px; padding: 14px 20px 14px 17px; font-size: .95rem; font-weight: 700;
+    box-shadow: var(--shadow); z-index: 20; display: inline-flex; align-items: center; gap: 8px;
   }
+  .fab svg { width: 18px; height: 18px; }
 
-  /* ---------- sheet ---------- */
+  /* ---------- alt sayfa ---------- */
   .overlay {
-    position: fixed; inset: 0; background: rgba(20, 32, 28, .45);
+    position: fixed; inset: 0; background: rgba(36, 20, 62, .5);
     display: flex; align-items: flex-end; justify-content: center;
     z-index: 40; opacity: 0; pointer-events: none; transition: opacity .18s ease;
   }
   .overlay.open { opacity: 1; pointer-events: auto; }
   .sheet {
     width: 100%; max-width: 560px; background: var(--surface);
-    border-radius: 20px 20px 0 0; box-shadow: var(--sheet-shadow);
+    border-radius: 24px 24px 0 0; box-shadow: var(--sheet-shadow);
     max-height: 90vh; overflow-y: auto; -webkit-overflow-scrolling: touch;
     padding: 18px 18px calc(22px + env(safe-area-inset-bottom, 0px));
-    transform: translateY(14px); transition: transform .22s ease;
+    transform: translateY(16px); transition: transform .22s ease;
     display: flex; flex-direction: column; gap: 14px;
   }
   .overlay.open .sheet { transform: translateY(0); }
-  @media (prefers-reduced-motion: reduce) {
-    .overlay, .sheet { transition: none; }
-  }
+  @media (prefers-reduced-motion: reduce) { .overlay, .sheet { transition: none; } }
   .sheet-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-  .sheet-head h2 { font-family: var(--serif); font-weight: 600; font-size: 1.3rem; margin: 0; }
-  .x { background: none; border: 0; font-size: 1.5rem; line-height: 1; color: var(--faint); padding: 0 4px; }
+  .sheet-head h2 { font-family: var(--serif); font-weight: 600; font-size: 1.35rem; margin: 0; }
+  .x { background: none; border: 0; font-size: 1.6rem; line-height: 1; color: var(--faint); padding: 0 4px; }
   .field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
   .field > label, .legend { font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); }
-  .field input[type="text"], .field input[type="number"], .field input[type="date"], .field textarea {
-    background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px;
+  .field input[type="text"], .field input[type="url"], .field input[type="number"], .field input[type="date"], .field textarea {
+    background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px;
     padding: 11px 13px; font-size: 1rem; width: 100%;
   }
   .field textarea { min-height: 72px; resize: vertical; font-size: .95rem; }
@@ -270,11 +329,11 @@
   .two > .field input { max-width: 100%; }
   .seg { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; }
   .seg button {
-    background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px;
-    padding: 10px 8px; font-size: .86rem; font-weight: 500; color: var(--muted);
+    background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px;
+    padding: 10px 8px; font-size: .86rem; font-weight: 700; color: var(--muted);
     display: flex; align-items: center; gap: 7px; justify-content: center;
   }
-  .seg button::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: currentColor; opacity: .5; }
+  .seg button::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; opacity: .45; }
   .seg button[aria-pressed="true"] { color: var(--ink); border-color: currentColor; background: transparent; }
   .seg button[data-v="plan"][aria-pressed="true"] { color: var(--s-plan); }
   .seg button[data-v="reading"][aria-pressed="true"] { color: var(--s-reading); }
@@ -282,35 +341,104 @@
   .seg button[data-v="dropped"][aria-pressed="true"] { color: var(--s-dropped); }
   .seg button[aria-pressed="true"]::before { opacity: 1; }
   .rate { display: flex; gap: 4px; align-items: center; }
-  .rate button { background: none; border: 0; font-size: 1.55rem; line-height: 1; padding: 2px; color: var(--line); }
-  .rate button[data-on="1"] { color: var(--s-done); }
+  .rate button { background: none; border: 0; font-size: 1.6rem; line-height: 1; padding: 2px; color: var(--line); }
+  .rate button[data-on="1"] { color: var(--honey); }
   .rate .clear { font-size: .78rem; color: var(--faint); text-decoration: underline; margin-left: 6px; }
   .err { color: var(--s-dropped); font-size: .8rem; }
+  .ok { color: var(--leaf); font-size: .8rem; }
   .sheet-foot { display: flex; gap: 10px; align-items: center; margin-top: 2px; }
-  .sheet-foot .btn { flex: 1; padding: 13px; font-weight: 700; }
-  .del { background: none; border: 1px solid var(--line); color: var(--s-dropped); border-radius: 999px; padding: 12px 15px; font-size: .88rem; }
+  .sheet-foot .btn { flex: 1; padding: 13px; }
+  .del { background: none; border: 1px solid var(--line); color: var(--s-dropped); border-radius: 999px; padding: 12px 15px; font-size: .88rem; font-weight: 700; }
   .sheet p.note { margin: 0; font-size: .82rem; color: var(--muted); }
+  .block { border: 1px solid var(--line); border-radius: 14px; padding: 13px 14px; display: flex; flex-direction: column; gap: 10px; background: var(--surface-2); }
+  .block h3 { margin: 0; font-size: .82rem; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); font-weight: 700; }
+  details.how summary { font-size: .84rem; color: var(--accent); cursor: pointer; font-weight: 700; }
+  details.how ol { margin: 10px 0 0; padding-left: 20px; font-size: .84rem; color: var(--muted); display: flex; flex-direction: column; gap: 7px; }
+  details.how a { color: var(--accent); }
+  pre.rules {
+    margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+    padding: 10px 12px; font-family: var(--mono); font-size: .72rem; overflow-x: auto; color: var(--ink);
+  }
+  .room { font-family: var(--mono); font-size: .84rem; color: var(--ink); overflow-wrap: anywhere; }
   .toast {
     position: fixed; left: 50%; transform: translateX(-50%);
-    bottom: calc(86px + env(safe-area-inset-bottom, 0px));
-    background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 999px;
-    font-size: .85rem; z-index: 60; opacity: 0; pointer-events: none; transition: opacity .2s ease;
+    bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+    background: var(--ink); color: var(--bg); padding: 11px 17px; border-radius: 999px;
+    font-size: .85rem; font-weight: 600; z-index: 60; opacity: 0; pointer-events: none;
+    transition: opacity .2s ease; max-width: calc(100% - 36px); text-align: center;
   }
   .toast.show { opacity: 1; }
+  #petals { position: fixed; inset: 0; pointer-events: none; z-index: 55; overflow: hidden; }
+  #petals b {
+    position: absolute; width: 11px; height: 11px; border-radius: 60% 0 60% 0;
+    animation: fly 1400ms cubic-bezier(.2, .7, .4, 1) forwards;
+  }
+  @keyframes fly {
+    0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+    100% { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)); opacity: 0; }
+  }
   footer { text-align: center; font-size: .74rem; color: var(--faint); }
+  footer .sep { opacity: .5; }
 </style>
 </head>
 <body>
+<div class="garden" aria-hidden="true">
+  <svg class="band" viewBox="0 0 360 104" preserveAspectRatio="xMidYMax slice">
+    <defs>
+      <g id="fl">
+        <circle cx="0" cy="-5.5" r="5"/>
+        <circle cx="5.23" cy="-1.7" r="5"/>
+        <circle cx="3.23" cy="4.45" r="5"/>
+        <circle cx="-3.23" cy="4.45" r="5"/>
+        <circle cx="-5.23" cy="-1.7" r="5"/>
+      </g>
+    </defs>
+    <path class="stem" d="M26 104 C 22 82 30 70 27 52"/>
+    <path class="stem" d="M72 104 C 78 86 68 72 74 60"/>
+    <path class="stem" d="M124 104 C 120 88 128 78 125 68"/>
+    <path class="stem" d="M186 104 C 190 80 180 66 187 44"/>
+    <path class="stem" d="M238 104 C 234 88 242 76 239 62"/>
+    <path class="stem" d="M296 104 C 302 84 292 70 298 54"/>
+    <path class="stem" d="M338 104 C 334 90 340 80 337 70"/>
+    <ellipse class="leaf" cx="18" cy="80" rx="9" ry="4.5" transform="rotate(-24 18 80)"/>
+    <ellipse class="leaf" cx="82" cy="88" rx="10" ry="5" transform="rotate(22 82 88)"/>
+    <ellipse class="leaf" cx="133" cy="90" rx="8" ry="4" transform="rotate(20 133 90)"/>
+    <ellipse class="leaf" cx="177" cy="74" rx="11" ry="5" transform="rotate(-20 177 74)"/>
+    <ellipse class="leaf" cx="248" cy="86" rx="9" ry="4.5" transform="rotate(24 248 86)"/>
+    <ellipse class="leaf" cx="288" cy="80" rx="10" ry="5" transform="rotate(-22 288 80)"/>
+    <g transform="translate(27 52)"><use href="#fl" class="petal-1"/><circle r="2.9" class="core"/></g>
+    <g transform="translate(74 60) scale(.86)"><use href="#fl" class="petal-2"/><circle r="2.9" class="core"/></g>
+    <g transform="translate(125 68) scale(.72)"><use href="#fl" class="petal-3"/><circle r="2.9" class="core-2"/></g>
+    <g transform="translate(187 44) scale(1.05)"><use href="#fl" class="petal-2"/><circle r="3.1" class="core"/></g>
+    <g transform="translate(239 62) scale(.8)"><use href="#fl" class="petal-1"/><circle r="2.9" class="core"/></g>
+    <g transform="translate(298 54) scale(.95)"><use href="#fl" class="petal-3"/><circle r="3" class="core-2"/></g>
+    <g transform="translate(337 70) scale(.68)"><use href="#fl" class="petal-1"/><circle r="2.9" class="core"/></g>
+  </svg>
+  <svg class="bug lady" viewBox="0 0 24 24">
+    <ellipse cx="12" cy="13" rx="8" ry="8.5" fill="#c8384e"/>
+    <path d="M12 4.5 A8.5 8.5 0 0 0 12 21.5 Z" fill="#a82c40"/>
+    <circle cx="12" cy="6.5" r="3.2" fill="#2b1b33"/>
+    <rect x="11.3" y="6" width="1.4" height="15" rx=".7" fill="#2b1b33"/>
+    <circle cx="8" cy="11" r="1.5" fill="#2b1b33"/>
+    <circle cx="16" cy="11" r="1.5" fill="#2b1b33"/>
+    <circle cx="8.6" cy="16" r="1.3" fill="#2b1b33"/>
+    <circle cx="15.4" cy="16" r="1.3" fill="#2b1b33"/>
+  </svg>
+  <svg class="bug bee" viewBox="0 0 24 24">
+    <ellipse cx="12" cy="15" rx="5.5" ry="6.5" fill="#e3a72f"/>
+    <path d="M6.7 13h10.6M7 17h10" stroke="#3a2a12" stroke-width="1.8" stroke-linecap="round"/>
+    <ellipse cx="6.5" cy="9" rx="4.5" ry="3" fill="#efe8f8" opacity=".85" transform="rotate(-24 6.5 9)"/>
+    <ellipse cx="17.5" cy="9" rx="4.5" ry="3" fill="#efe8f8" opacity=".85" transform="rotate(24 17.5 9)"/>
+  </svg>
+</div>
+
 <div class="wrap">
   <header class="top">
     <div>
-      <p class="eyebrow">Ortak okuma günlüğü</p>
+      <p class="eyebrow">Ortak okuma bahçesi</p>
       <h1>Kitaplık</h1>
     </div>
-    <div class="top-actions">
-      <button class="ghost" id="btn-share" type="button">Listeyi gönder</button>
-      <button class="ghost" id="btn-settings" type="button" aria-label="Ayarlar ve isim">⚙<strong id="me-name">Ben</strong></button>
-    </div>
+    <div class="top-actions" id="top-actions"></div>
   </header>
 
   <div id="notices"></div>
@@ -327,10 +455,13 @@
 
   <div id="hint-bottom"></div>
 
-  <footer>Kayıtlar yalnızca bu telefonda saklanır · Listeyi göndererek eşleşirsiniz</footer>
+  <footer id="foot"></footer>
 </div>
 
-<button class="fab" id="btn-add" type="button">+ Kitap</button>
+<button class="fab" id="btn-add" type="button">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5.5v13M5.5 12h13" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" fill="none"/></svg>
+  Kitap
+</button>
 
 <div class="overlay" id="ov-book" role="dialog" aria-modal="true" aria-labelledby="book-title">
   <form class="sheet" id="form-book" novalidate>
@@ -409,19 +540,45 @@
       <h2 id="set-title">Ayarlar</h2>
       <button class="x" type="button" data-close aria-label="Kapat">×</button>
     </div>
+
     <div class="field">
       <label for="s-me">Adınız</label>
       <input id="s-me" type="text" autocomplete="off" placeholder="Ben" />
-      <p class="note">Eklediğiniz kitaplar bu isimle işaretlenir; listeleri birleştirince kimin okuduğu karışmaz.</p>
+      <p class="note">Eklediğiniz kitaplar bu isimle işaretlenir.</p>
     </div>
+
+    <div class="block" id="sync-block">
+      <h3>Canlı senkron</h3>
+      <p class="note" id="sync-state">Kapalı — kayıtlar yalnızca bu telefonda.</p>
+
+      <div id="sync-off">
+        <div class="notice-row">
+          <button class="btn" type="button" id="s-connect">Canlı senkronu aç</button>
+        </div>
+        <p class="note" style="margin-top:9px">Ortak bir liste oluşturur; kurulum, hesap ya da şifre gerekmez. Sonra <b>Eşleşme linkini gönder</b> ile eşinizi davet edersiniz — ikinizin eklediği her kitap karşı tarafta birkaç saniye içinde görünür.</p>
+        <div class="err" id="s-err" hidden></div>
+      </div>
+
+      <div id="sync-on" hidden>
+        <p class="note">Oda kodu: <span class="room" id="s-room"></span></p>
+        <div class="notice-row" style="margin-top:9px">
+          <button class="btn" type="button" id="s-pair">Eşleşme linkini gönder</button>
+          <button class="btn warn" type="button" id="s-disconnect">Senkronu kapat</button>
+        </div>
+        <p class="note" style="margin-top:8px">Bu linki açan kişi aynı listeye canlı bağlanır — sadece eşinize gönderin. Kitaplar ücretsiz bir bulut depoda tutulur; oda kodunu bilmeyen kimse ulaşamaz. Her telefonda ayrıca yerel bir kopya kalır.</p>
+        <div class="err" id="s-err2" hidden></div>
+      </div>
+    </div>
+
     <div class="field">
       <span class="legend">Liste</span>
       <div class="notice-row">
-        <button class="btn sec" type="button" id="s-share">Listeyi gönder</button>
+        <button class="btn sec" type="button" id="s-share">Listeyi link olarak gönder</button>
         <button class="btn warn" type="button" id="s-reset">Tüm kayıtları sil</button>
       </div>
       <p class="note" id="s-count"></p>
     </div>
+
     <div class="sheet-foot">
       <button class="btn" type="button" data-close>Tamam</button>
     </div>
@@ -429,19 +586,24 @@
 </div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div id="petals" aria-hidden="true"></div>
 
 <script>
 (function () {
   "use strict";
 
-  var KEY = "kitaplik.v1";
-  var STATUS = {
-    plan: { label: "Sırada", tab: "Sırada" },
-    reading: { label: "Okuyorum", tab: "Okuyorum" },
-    done: { label: "Bitirdim", tab: "Bitirdim" },
-    dropped: { label: "Bıraktım", tab: "Bıraktım" }
-  };
+  var KEY = "kitaplik.v2";
+  var OLD_KEY = "kitaplik.v1";
+  var STATUS = { plan: "Sırada", reading: "Okuyorum", done: "Bitirdim", dropped: "Bıraktım" };
   var ORDER = ["reading", "plan", "done", "dropped"];
+  var POLL_ON = 5000, POLL_HIDDEN = 45000;
+
+  var SVG = {
+    flower: '<svg viewBox="-9 -9 18 18" aria-hidden="true"><g fill="currentColor"><circle cx="0" cy="-4.6" r="4.1" opacity=".55"/><circle cx="4.37" cy="-1.42" r="4.1" opacity=".55"/><circle cx="2.7" cy="3.72" r="4.1" opacity=".55"/><circle cx="-2.7" cy="3.72" r="4.1" opacity=".55"/><circle cx="-4.37" cy="-1.42" r="4.1" opacity=".55"/><circle r="2.4"/></g></svg>',
+    leaf: '<svg viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3C7 3 3 7 3 15c8 0 12-4 12-12z" fill="currentColor" opacity=".6"/><path d="M15 3C10 8 6 11 3 15" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>',
+    star: '<svg viewBox="0 0 18 18" aria-hidden="true"><path d="M9 1.5l2.2 4.6 5 .7-3.6 3.5.85 5-4.45-2.4-4.45 2.4.85-5L1.8 6.8l5-.7z" fill="currentColor"/></svg>',
+    sprout: '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58V30" stroke="var(--leaf)" stroke-width="3" stroke-linecap="round" fill="none"/><ellipse cx="20" cy="34" rx="11" ry="6" fill="var(--leaf)" opacity=".55" transform="rotate(-22 20 34)"/><ellipse cx="44" cy="30" rx="11" ry="6" fill="var(--leaf)" opacity=".4" transform="rotate(22 44 30)"/><g transform="translate(32 16)"><circle cx="0" cy="-7" r="6" fill="var(--accent)" opacity=".5"/><circle cx="6.7" cy="-2.2" r="6" fill="var(--accent)" opacity=".5"/><circle cx="4.1" cy="5.7" r="6" fill="var(--petal)" opacity=".5"/><circle cx="-4.1" cy="5.7" r="6" fill="var(--petal)" opacity=".5"/><circle cx="-6.7" cy="-2.2" r="6" fill="var(--accent)" opacity=".5"/><circle r="3.6" fill="var(--honey)"/></g></svg>'
+  };
 
   var EXAMPLES = [
     { id: "ex-1", t: "Kürk Mantolu Madonna", a: "Sabahattin Ali", s: "done", p: 160, c: 160, r: 5, n: "", o: "Ben", sd: "", fd: iso(-26), u: 1, ex: 1 },
@@ -449,54 +611,48 @@
     { id: "ex-3", t: "Tutunamayanlar", a: "Oğuz Atay", s: "plan", p: 724, c: 0, r: 0, n: "Uzun, tatile saklıyorum.", o: "Ben", sd: "", fd: "", u: 1, ex: 1 }
   ];
 
+  /* ---------------- durum ---------------- */
+
   var state = load();
   var ui = { status: "all", owner: "all", q: "" };
   var editing = null;
   var draft = { s: "plan", r: 0 };
-  var incoming = null;
+  var incoming = null;   // link ile gelen liste
+  var pairing = null;    // link ile gelen eşleşme daveti
+  var flashIds = {};
 
-  var el = {
-    notices: byId("notices"), stats: byId("stats"), tabs: byId("tabs"),
-    readers: byId("readers"), list: byId("list"), q: byId("q"),
-    meName: byId("me-name"), owners: byId("owners"), toast: byId("toast"),
-    hintBottom: byId("hint-bottom")
-  };
-
-  /* ---------- storage ---------- */
+  var el = {};
+  ["notices", "stats", "tabs", "readers", "list", "q", "owners", "toast", "hint-bottom", "top-actions", "foot", "petals"]
+    .forEach(function (id) { el[id.replace(/-(\w)/g, function (m, c) { return c.toUpperCase(); })] = byId(id); });
 
   function byId(id) { return document.getElementById(id); }
 
-  function iso(offsetDays) {
+  function iso(off) {
     var d = new Date();
-    d.setDate(d.getDate() + (offsetDays || 0));
+    d.setDate(d.getDate() + (off || 0));
     return d.toISOString().slice(0, 10);
   }
 
   function load() {
     var raw = null;
-    try { raw = localStorage.getItem(KEY); } catch (e) { raw = null; }
+    try { raw = localStorage.getItem(KEY) || localStorage.getItem(OLD_KEY); } catch (e) { raw = null; }
     if (raw) {
       try {
         var s = JSON.parse(raw);
         if (s && Array.isArray(s.books)) {
-          return { me: s.me || "Ben", books: s.books, hints: s.hints || {} };
+          return { me: s.me || "Ben", books: s.books, hints: s.hints || {}, sync: s.sync || null };
         }
-      } catch (e) { /* bozuk kayıt: sıfırdan başla */ }
+      } catch (e) { /* bozuk kayıt */ }
     }
-    return { me: "Ben", books: EXAMPLES.slice(), hints: {} };
+    return { me: "Ben", books: EXAMPLES.slice(), hints: {}, sync: null };
   }
 
   function save() {
-    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {
-      toast("Kayıt yapılamadı — tarayıcı depolaması kapalı olabilir.");
-    }
+    try { localStorage.setItem(KEY, JSON.stringify(state)); }
+    catch (e) { toast("Kayıt yapılamadı — tarayıcı depolaması kapalı olabilir."); }
   }
 
-  /* ---------- helpers ---------- */
-
-  function uid() {
-    return Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 7);
-  }
+  function uid() { return Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 7); }
 
   function num(v) {
     var n = parseInt(v, 10);
@@ -506,20 +662,31 @@
   function fmtDate(s) {
     if (!s) return "";
     var d = new Date(s + "T00:00:00");
-    if (isNaN(d.getTime())) return "";
-    return d.toLocaleDateString("tr-TR", { day: "numeric", month: "short", year: "numeric" });
+    return isNaN(d.getTime()) ? "" : d.toLocaleDateString("tr-TR", { day: "numeric", month: "short", year: "numeric" });
+  }
+
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   }
 
   function toast(msg) {
     el.toast.textContent = msg;
     el.toast.classList.add("show");
     clearTimeout(toast._t);
-    toast._t = setTimeout(function () { el.toast.classList.remove("show"); }, 2600);
+    toast._t = setTimeout(function () { el.toast.classList.remove("show"); }, 3000);
+  }
+
+  function live(b) { return b && !b.d; }
+  function real(b) { return live(b) && !b.ex; }
+
+  function find(id) {
+    for (var i = 0; i < state.books.length; i++) if (state.books[i].id === id) return state.books[i];
+    return null;
   }
 
   function owners() {
     var seen = [];
-    state.books.forEach(function (b) {
+    state.books.filter(live).forEach(function (b) {
       var o = (b.o || "").trim();
       if (o && seen.indexOf(o) === -1) seen.push(o);
     });
@@ -529,12 +696,10 @@
   function visible() {
     var q = ui.q.trim().toLocaleLowerCase("tr");
     return state.books.filter(function (b) {
+      if (!live(b)) return false;
       if (ui.status !== "all" && b.s !== ui.status) return false;
       if (ui.owner !== "all" && (b.o || "") !== ui.owner) return false;
-      if (q) {
-        var hay = ((b.t || "") + " " + (b.a || "")).toLocaleLowerCase("tr");
-        if (hay.indexOf(q) === -1) return false;
-      }
+      if (q && ((b.t || "") + " " + (b.a || "")).toLocaleLowerCase("tr").indexOf(q) === -1) return false;
       return true;
     }).sort(function (x, y) {
       var d = ORDER.indexOf(x.s) - ORDER.indexOf(y.s);
@@ -544,26 +709,401 @@
     });
   }
 
-  /* ---------- render ---------- */
+  /* ---------------- ortak depo (kurulum gerektirmez) ---------------- */
+
+  function okJson(r) {
+    if (r.status === 404) return null;
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    return r.text().then(function (t) {
+      if (!t) return null;
+      try { return JSON.parse(t); } catch (e) { return null; }
+    });
+  }
+
+  var PROVIDERS = {
+    kvdb: {
+      url: function (id) { return "https://kvdb.io/" + id + "/kitaplik"; },
+      create: function (doc) {
+        return fetch("https://kvdb.io/", { method: "POST" }).then(function (r) {
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          return r.text();
+        }).then(function (bucket) {
+          bucket = (bucket || "").trim();
+          if (!/^[A-Za-z0-9_-]{8,}$/.test(bucket)) throw new Error("oda açılamadı");
+          return PROVIDERS.kvdb.write(bucket, doc).then(function () { return bucket; });
+        });
+      },
+      read: function (id) { return fetch(PROVIDERS.kvdb.url(id), { cache: "no-store" }).then(okJson); },
+      write: function (id, doc) {
+        return fetch(PROVIDERS.kvdb.url(id), {
+          method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(doc)
+        }).then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return true; });
+      }
+    },
+    jsonblob: {
+      url: function (id) { return "https://jsonblob.com/api/jsonBlob/" + id; },
+      create: function (doc) {
+        return fetch("https://jsonblob.com/api/jsonBlob", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify(doc)
+        }).then(function (r) {
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          var loc = r.headers.get("Location") || r.headers.get("location") || "";
+          var m = /([0-9]{6,})\s*$/.exec(loc);
+          if (!m) throw new Error("oda kimliği okunamadı");
+          return m[1];
+        });
+      },
+      read: function (id) { return fetch(PROVIDERS.jsonblob.url(id), { cache: "no-store" }).then(okJson); },
+      write: function (id, doc) {
+        return fetch(PROVIDERS.jsonblob.url(id), {
+          method: "PUT", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(doc)
+        }).then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return true; });
+      }
+    }
+  };
+
+  var PROVIDER_ORDER = ["kvdb", "jsonblob"];
+
+  /* ---------------- senkron ---------------- */
+
+  var sync = {
+    status: "off",      // off | connecting | live | error
+    first: false,
+    timer: null,
+    pushT: null,
+    busy: false,
+    msg: ""
+  };
+
+  function cfg() { return state.sync; }
+  function provider() { return cfg() && PROVIDERS[cfg().p]; }
+
+  function setStatus(st, msg) {
+    sync.status = st;
+    sync.msg = msg || "";
+    renderTop();
+    renderSyncPanel();
+  }
+
+  function localMap() {
+    var m = {};
+    state.books.forEach(function (b) {
+      if (b.ex) return;
+      m[b.id] = b;
+    });
+    return m;
+  }
+
+  function sanitize(inc, fallbackOwner) {
+    if (!inc || typeof inc !== "object") return null;
+    if (inc.d) return { id: String(inc.id), d: 1, u: num(inc.u) || Date.now() };
+    if (!inc.t) return null;
+    return {
+      id: String(inc.id),
+      t: String(inc.t).slice(0, 300),
+      a: inc.a ? String(inc.a).slice(0, 200) : "",
+      s: STATUS[inc.s] ? inc.s : "plan",
+      p: num(inc.p), c: num(inc.c),
+      r: Math.max(0, Math.min(5, num(inc.r))),
+      n: inc.n ? String(inc.n).slice(0, 2000) : "",
+      o: inc.o ? String(inc.o).slice(0, 60) : (fallbackOwner || "Eşim"),
+      sd: inc.sd ? String(inc.sd).slice(0, 10) : "",
+      fd: inc.fd ? String(inc.fd).slice(0, 10) : "",
+      u: num(inc.u) || Date.now()
+    };
+  }
+
+  // Uzaktaki kayıtları yerele işler; hangi kitapların değiştiğini döner.
+  function applyRemote(remote, fallbackOwner) {
+    var out = { added: [], updated: [], removed: [] };
+    Object.keys(remote || {}).forEach(function (id) {
+      var inc = remote[id];
+      if (!inc || typeof inc !== "object") return;
+      inc.id = id;
+      var clean = sanitize(inc, fallbackOwner);
+      if (!clean) return;
+      var mine = find(id);
+      if (!mine) {
+        if (clean.d) { state.books.push(clean); return; }
+        state.books.push(clean);
+        out.added.push(clean);
+      } else if ((clean.u || 0) > (mine.u || 0)) {
+        var wasLive = live(mine);
+        Object.keys(mine).forEach(function (k) { delete mine[k]; });
+        Object.keys(clean).forEach(function (k) { mine[k] = clean[k]; });
+        if (clean.d && wasLive) out.removed.push(clean);
+        else if (!clean.d) out.updated.push(clean);
+      }
+    });
+    return out;
+  }
+
+  function announce(ch) {
+    var n = ch.added.length + ch.updated.length + ch.removed.length;
+    if (!n) return;
+    ch.added.concat(ch.updated).forEach(function (b) { flashIds[b.id] = 1; });
+    if (n === 1) {
+      var b = ch.added[0] || ch.updated[0] || ch.removed[0];
+      var who = b.o ? b.o + ": " : "";
+      if (ch.added.length) toast(who + "“" + b.t + "” eklendi");
+      else if (ch.updated.length) toast(who + "“" + b.t + "” güncellendi");
+      else toast("“" + b.t + "” listeden çıkarıldı");
+    } else {
+      toast(n + " kitap güncellendi");
+    }
+  }
+
+  function syncOnce(force) {
+    if (!cfg() || sync.busy) return Promise.resolve();
+    sync.busy = true;
+    if (sync.status !== "live") setStatus("connecting");
+    return provider().read(cfg().id).then(function (doc) {
+      var remote = (doc && doc.books) || {};
+      var ch = applyRemote(remote);
+      var mine = localMap();
+      var need = !!force;
+      Object.keys(mine).forEach(function (id) {
+        var r = remote[id];
+        if (!r || (mine[id].u || 0) > (r.u || 0)) need = true;
+      });
+      if (ch.added.length || ch.updated.length || ch.removed.length) {
+        save();
+        render();
+        if (sync.first) announce(ch);
+      }
+      sync.first = true;
+      setStatus("live");
+      if (!need) return true;
+      var union = {};
+      Object.keys(remote).forEach(function (k) {
+        var c = sanitize(Object.assign({ id: k }, remote[k]));
+        if (c) union[k] = c;
+      });
+      Object.keys(mine).forEach(function (k) {
+        var r = union[k];
+        if (!r || (mine[k].u || 0) >= (r.u || 0)) union[k] = mine[k];
+      });
+      return provider().write(cfg().id, { v: 1, books: union, updated: Date.now() });
+    }).catch(function (e) {
+      setStatus("error", (e && e.message) || "bağlantı yok");
+    }).then(function () {
+      sync.busy = false;
+    });
+  }
+
+  function schedule() {
+    clearTimeout(sync.timer);
+    if (!cfg()) return;
+    sync.timer = setTimeout(function () {
+      syncOnce(false).then(schedule);
+    }, document.hidden ? POLL_HIDDEN : POLL_ON);
+  }
+
+  function pushSoon() {
+    if (!cfg()) return;
+    clearTimeout(sync.pushT);
+    sync.pushT = setTimeout(function () { syncOnce(true).then(schedule); }, 500);
+  }
+
+  function enableSync() {
+    var btn = byId("s-connect");
+    var err = byId("s-err");
+    err.hidden = true;
+    btn.disabled = true;
+    btn.textContent = "Oda açılıyor…";
+    setStatus("connecting");
+
+    var books = {};
+    state.books.forEach(function (b) { if (!b.ex) books[b.id] = b; });
+    var doc = { v: 1, books: books, updated: Date.now() };
+
+    var i = 0;
+    function attempt() {
+      if (i >= PROVIDER_ORDER.length) {
+        btn.disabled = false;
+        btn.textContent = "Canlı senkronu aç";
+        err.hidden = false;
+        err.textContent = "Ortak liste şu an açılamadı. İnternet bağlantınızı kontrol edip tekrar deneyin.";
+        setStatus("off");
+        return;
+      }
+      var name = PROVIDER_ORDER[i++];
+      PROVIDERS[name].create(doc).then(function (id) {
+        state.sync = { p: name, id: id };
+        save();
+        btn.disabled = false;
+        btn.textContent = "Canlı senkronu aç";
+        sync.first = false;
+        setStatus("live");
+        render();
+        syncOnce(true).then(schedule);
+        toast("Canlı senkron açıldı. Şimdi eşleşme linkini gönderin.");
+      }).catch(function () { attempt(); });
+    }
+    attempt();
+  }
+
+  function disableSync() {
+    if (!confirm("Canlı senkron kapatılsın mı? Kitaplar bu telefonda kalır, ama karşılıklı güncelleme durur.")) return;
+    state.sync = null;
+    save();
+    clearTimeout(sync.timer);
+    clearTimeout(sync.pushT);
+    setStatus("off");
+    render();
+    toast("Senkron kapatıldı.");
+  }
+
+  function pairLink() {
+    if (!cfg()) return "";
+    return location.origin + location.pathname + "#s=" + encode({ v: 1, p: cfg().p, id: cfg().id, from: state.me });
+  }
+
+  function sendPair() {
+    var url = pairLink();
+    if (!url) return;
+    shareUrl(url, state.me + " sizi ortak kitap listesine davet ediyor");
+  }
+
+  /* ---------------- link ile paylaşma ---------------- */
+
+  function encode(obj) {
+    var bytes = new TextEncoder().encode(JSON.stringify(obj));
+    var bin = "";
+    for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  }
+
+  function decode(str) {
+    var b64 = str.replace(/-/g, "+").replace(/_/g, "/");
+    while (b64.length % 4) b64 += "=";
+    var bin = atob(b64);
+    var bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return JSON.parse(new TextDecoder().decode(bytes));
+  }
+
+  function shareUrl(url, text) {
+    if (navigator.share) {
+      navigator.share({ title: "Kitaplık", text: text, url: url }).catch(function () { copy(url); });
+    } else {
+      copy(url);
+    }
+  }
+
+  function copy(url) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url)
+        .then(function () { toast("Bağlantı kopyalandı — mesajla gönderebilirsiniz."); })
+        .catch(function () { fallbackCopy(url); });
+    } else {
+      fallbackCopy(url);
+    }
+  }
+
+  function fallbackCopy(url) {
+    var ta = document.createElement("textarea");
+    ta.value = url;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    toast(ok ? "Bağlantı kopyalandı." : "Bağlantı kopyalanamadı, ekran görüntüsü alıp bana ulaşın.");
+  }
+
+  function shareList() {
+    var books = state.books.filter(function (b) { return !b.ex; });
+    if (!books.length) { toast("Gönderilecek kayıt yok."); return; }
+    var url = location.origin + location.pathname + "#p=" + encode({ v: 1, from: state.me, books: books });
+    if (url.length > 60000) { toast("Liste bağlantı için çok uzun."); return; }
+    shareUrl(url, state.me + " kitap listesini paylaştı");
+  }
+
+  function readHash() {
+    var h = location.hash || "";
+    var mp = /[#&]p=([A-Za-z0-9\-_]+)/.exec(h);
+    var ms = /[#&]s=([A-Za-z0-9\-_]+)/.exec(h);
+    try {
+      if (ms) {
+        var d = decode(ms[1]);
+        if (d && d.id && PROVIDERS[d.p]) pairing = { p: d.p, id: String(d.id), from: d.from || "" };
+      } else if (mp) {
+        var data = decode(mp[1]);
+        if (data && Array.isArray(data.books) && data.books.length) incoming = { from: data.from, books: data.books };
+      }
+    } catch (e) {
+      if (h) toast("Gelen bağlantı okunamadı.");
+    }
+    if (h) history.replaceState(null, "", location.pathname + location.search);
+  }
+
+  function acceptPair() {
+    if (!pairing) return;
+    state.sync = { p: pairing.p, id: pairing.id };
+    var from = pairing.from;
+    pairing = null;
+    save();
+    sync.first = false;
+    setStatus("connecting");
+    render();
+    syncOnce(true).then(function () {
+      schedule();
+      toast(from ? from + " ile ortak listeye bağlandınız." : "Ortak listeye bağlandınız.");
+    });
+  }
+
+  function mergeIncoming() {
+    if (!incoming) return;
+    var ch = applyRemote(incoming.books.reduce(function (m, b) {
+      if (b && b.id) m[b.id] = b;
+      return m;
+    }, {}), incoming.from || "Eşim");
+    incoming = null;
+    save();
+    render();
+    toast((ch.added.length + ch.updated.length) + " kayıt listenize işlendi.");
+    pushSoon();
+  }
+
+  /* ---------------- çizim ---------------- */
 
   function render() {
-    el.meName.textContent = state.me;
+    renderTop();
     renderNotices();
     renderStats();
     renderTabs();
     renderReaders();
     renderList();
-    el.owners.innerHTML = "";
-    owners().forEach(function (o) {
-      var opt = document.createElement("option");
-      opt.value = o;
-      el.owners.appendChild(opt);
-    });
+    renderFoot();
+    el.owners.innerHTML = owners().map(function (o) { return '<option value="' + esc(o) + '"></option>'; }).join("");
+    flashIds = {};
+  }
+
+  function renderTop() {
+    var labels = { off: "Senkron kapalı", connecting: "Bağlanıyor…", live: "Canlı", error: "Bağlantı yok" };
+    el.topActions.innerHTML =
+      '<button class="pill-live" type="button" id="btn-live" data-st="' + sync.status + '">' +
+        '<span class="dot"></span>' + labels[sync.status] + "</button>" +
+      '<button class="ghost" type="button" id="btn-settings" aria-label="Ayarlar">⚙<strong>' + esc(state.me) + "</strong></button>";
+    byId("btn-live").addEventListener("click", openSettings);
+    byId("btn-settings").addEventListener("click", openSettings);
+  }
+
+  function renderFoot() {
+    el.foot.innerHTML = cfg()
+      ? "İkinizin listesi canlı olarak eşitleniyor <span class=\"sep\">·</span> her telefonda yerel kopya da tutulur"
+      : "Kayıtlar yalnızca bu telefonda <span class=\"sep\">·</span> ayarlardan canlı senkronu açabilirsiniz";
   }
 
   function renderStats() {
     var pool = state.books.filter(function (b) {
-      return ui.owner === "all" || (b.o || "") === ui.owner;
+      return live(b) && (ui.owner === "all" || (b.o || "") === ui.owner);
     });
     var done = pool.filter(function (b) { return b.s === "done"; });
     var pages = 0;
@@ -572,55 +1112,46 @@
       else if (b.s === "reading" || b.s === "dropped") pages += Math.min(num(b.c), num(b.p) || num(b.c));
     });
     var rated = done.filter(function (b) { return b.r > 0; });
-    var avg = rated.length
-      ? (rated.reduce(function (a, b) { return a + b.r; }, 0) / rated.length).toFixed(1)
-      : "—";
+    var avg = rated.length ? (rated.reduce(function (a, b) { return a + b.r; }, 0) / rated.length).toFixed(1) : "—";
     el.stats.innerHTML =
-      cell(String(done.length), "bitirilen kitap") +
-      cell(pages > 999 ? (pages / 1000).toFixed(1) + "<span> bin</span>" : String(pages), "okunan sayfa") +
-      cell(avg === "—" ? "—" : avg + "<span> / 5</span>", "ortalama puan");
+      cell(String(done.length), "bitirilen", SVG.flower, "var(--accent)") +
+      cell(pages > 999 ? (pages / 1000).toFixed(1) + "<span> bin</span>" : String(pages), "okunan sayfa", SVG.leaf, "var(--leaf)") +
+      cell(avg === "—" ? "—" : avg + "<span> / 5</span>", "ortalama puan", SVG.star, "var(--honey)");
   }
 
-  function cell(value, label) {
-    return '<div class="stat"><div class="stat-v">' + value +
-      '</div><div class="stat-l">' + label + "</div></div>";
+  function cell(value, label, icon, color) {
+    return '<div class="stat"><div class="stat-v">' + value + "</div>" +
+      '<div class="stat-l"><span style="color:' + color + ';display:inline-flex">' + icon + "</span>" + label + "</div></div>";
   }
 
   function renderTabs() {
-    var counts = { all: state.books.length };
-    Object.keys(STATUS).forEach(function (k) { counts[k] = 0; });
-    state.books.forEach(function (b) { if (counts[b.s] != null) counts[b.s]++; });
-
-    var keys = ["all"].concat(ORDER);
-    el.tabs.innerHTML = keys.map(function (k) {
-      var label = k === "all" ? "Tümü" : STATUS[k].tab;
-      return '<button class="tab" type="button" role="tab" data-k="' + k + '" aria-selected="' +
-        (ui.status === k) + '">' + label + '<span class="n">' + counts[k] + "</span></button>";
+    var counts = { all: 0, plan: 0, reading: 0, done: 0, dropped: 0 };
+    state.books.filter(live).forEach(function (b) {
+      counts.all++;
+      if (counts[b.s] != null) counts[b.s]++;
+    });
+    el.tabs.innerHTML = ["all"].concat(ORDER).map(function (k) {
+      return '<button class="tab" type="button" role="tab" data-k="' + k + '" aria-selected="' + (ui.status === k) + '">' +
+        (k === "all" ? "Tümü" : STATUS[k]) + '<span class="n">' + counts[k] + "</span></button>";
     }).join("");
   }
 
   function renderReaders() {
     var list = owners();
     if (list.length < 2) { el.readers.innerHTML = ""; return; }
-    el.readers.innerHTML = ['<button class="reader" type="button" data-o="all" aria-pressed="' +
-      (ui.owner === "all") + '">Hepsi</button>'].concat(list.map(function (o) {
-      return '<button class="reader" type="button" data-o="' + esc(o) + '" aria-pressed="' +
-        (ui.owner === o) + '">' + esc(o) + "</button>";
-    })).join("");
-  }
-
-  function esc(s) {
-    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    el.readers.innerHTML = ['<button class="reader" type="button" data-o="all" aria-pressed="' + (ui.owner === "all") + '">Hepsi</button>']
+      .concat(list.map(function (o) {
+        return '<button class="reader" type="button" data-o="' + esc(o) + '" aria-pressed="' + (ui.owner === o) + '">' + esc(o) + "</button>";
+      })).join("");
   }
 
   function renderList() {
     var books = visible();
     if (!books.length) {
-      el.list.innerHTML = '<div class="empty"><p>' +
-        (state.books.length ? "Bu filtrede kitap yok." : "Kitaplık henüz boş.") +
-        '</p><small>' +
-        (state.books.length ? "Başka bir sekmeye bak ya da aramayı temizle." : "Sağ alttaki + Kitap ile ilk kaydı ekle.") +
+      var any = state.books.some(live);
+      el.list.innerHTML = '<div class="empty">' + SVG.sprout + "<p>" +
+        (any ? "Bu filtrede kitap yok." : "Bahçe henüz boş.") + "</p><small>" +
+        (any ? "Başka bir sekmeye bakın ya da aramayı temizleyin." : "Sağ alttaki çiçekli düğmeyle ilk kitabı ekleyin.") +
         "</small></div>";
       return;
     }
@@ -654,7 +1185,7 @@
     }
     if (b.n) meta.push("<span>· not var</span>");
 
-    return '<button class="book" type="button" data-id="' + esc(b.id) + '" data-s="' + esc(b.s) + '">' +
+    return '<button class="book' + (flashIds[b.id] ? " flash" : "") + '" type="button" data-id="' + esc(b.id) + '" data-s="' + esc(b.s) + '">' +
       '<span class="spine" aria-hidden="true"></span>' +
       '<span class="bk-main">' +
         '<span class="bk-title">' + esc(b.t || "Adsız kitap") + "</span>" +
@@ -673,13 +1204,29 @@
     return out;
   }
 
+  function isStandalone() {
+    return window.navigator.standalone === true ||
+      (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches);
+  }
+
   function renderNotices() {
     var html = "";
-    if (incoming) {
-      html += '<div class="notice merge"><p><b>' + esc(incoming.from || "Bir liste") +
-        "</b> " + incoming.books.length + " kitap gönderdi. Kendi listenize eklenmesini ister misiniz?" +
-        '</p><div class="notice-row"><button class="btn" type="button" id="n-merge">Listeye ekle</button>' +
+    if (pairing) {
+      html += '<div class="notice merge"><p><b>' + esc(pairing.from || "Eşiniz") +
+        "</b> sizi ortak kitap listesine davet ediyor. Bağlanırsanız iki taraf da aynı listeyi canlı görür.</p>" +
+        '<div class="notice-row"><button class="btn" type="button" id="n-pair">Ortak listeye bağlan</button>' +
         '<button class="btn sec" type="button" id="n-skip">Şimdi değil</button></div></div>';
+    }
+    if (incoming) {
+      html += '<div class="notice merge"><p><b>' + esc(incoming.from || "Bir liste") + "</b> " + incoming.books.length +
+        " kayıt gönderdi. Listenize işlensin mi?</p>" +
+        '<div class="notice-row"><button class="btn" type="button" id="n-merge">Listeye ekle</button>' +
+        '<button class="btn sec" type="button" id="n-skip2">Şimdi değil</button></div></div>';
+    }
+    if (sync.status === "error") {
+      html += '<div class="notice"><div class="hint"><span>Ortak listeye ulaşılamıyor (' + esc(sync.msg || "bağlantı yok") +
+        "). Kayıtlarınız bu telefonda güvende; bağlantı gelince kendiliğinden eşitlenir.</span>" +
+        '<button type="button" id="n-retry">yeniden dene</button></div></div>';
     }
     if (state.books.some(function (b) { return b.ex; })) {
       html += '<div class="notice"><div class="hint"><span>Başlarken görünen üç kayıt örnektir.</span>' +
@@ -693,12 +1240,41 @@
       : "";
   }
 
-  function isStandalone() {
-    return window.navigator.standalone === true ||
-      (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches);
+  function renderSyncPanel() {
+    var on = !!cfg();
+    var labels = {
+      off: "Kapalı — kayıtlar yalnızca bu telefonda.",
+      connecting: "Bağlanıyor…",
+      live: "Açık — iki telefon canlı eşitleniyor.",
+      error: "Bağlantı kurulamadı: " + (sync.msg || "internet yok") + ". Kayıtlar bu telefonda duruyor."
+    };
+    byId("sync-state").textContent = labels[sync.status] || labels.off;
+    byId("sync-off").hidden = on;
+    byId("sync-on").hidden = !on;
+    if (on) byId("s-room").textContent = cfg().p + " / " + cfg().id;
   }
 
-  /* ---------- sheets ---------- */
+  /* ---------------- kutlama ---------------- */
+
+  function celebrate() {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var colors = ["var(--accent)", "var(--petal)", "var(--honey)", "var(--leaf)"];
+    var box = el.petals;
+    for (var i = 0; i < 16; i++) {
+      var s = document.createElement("b");
+      s.style.left = (46 + Math.random() * 8) + "%";
+      s.style.bottom = "78px";
+      s.style.background = colors[i % colors.length];
+      s.style.setProperty("--dx", (Math.random() * 260 - 130).toFixed(0) + "px");
+      s.style.setProperty("--dy", (-140 - Math.random() * 220).toFixed(0) + "px");
+      s.style.setProperty("--rot", (Math.random() * 720 - 360).toFixed(0) + "deg");
+      s.style.animationDelay = (Math.random() * 180).toFixed(0) + "ms";
+      box.appendChild(s);
+    }
+    setTimeout(function () { box.innerHTML = ""; }, 2000);
+  }
+
+  /* ---------------- alt sayfalar ---------------- */
 
   function openSheet(id) {
     byId(id).classList.add("open");
@@ -711,7 +1287,14 @@
     document.body.style.overflow = "";
   }
 
-  function setStatus(v) {
+  function openSettings() {
+    byId("s-me").value = state.me;
+    byId("s-count").textContent = state.books.filter(real).length + " kayıt bu telefonda saklanıyor.";
+    renderSyncPanel();
+    openSheet("ov-set");
+  }
+
+  function setStatusSeg(v) {
     draft.s = v;
     Array.prototype.forEach.call(byId("f-status").children, function (b) {
       b.setAttribute("aria-pressed", String(b.dataset.v === v));
@@ -725,14 +1308,13 @@
   function setRate(n) {
     draft.r = n;
     Array.prototype.forEach.call(byId("f-rate").children, function (b) {
-      if (!b.dataset.v) return;
-      b.dataset.on = Number(b.dataset.v) <= n ? "1" : "0";
+      if (b.dataset.v) b.dataset.on = Number(b.dataset.v) <= n ? "1" : "0";
     });
   }
 
   function openBook(id) {
     editing = id || null;
-    var b = id ? state.books.filter(function (x) { return x.id === id; })[0] : null;
+    var b = id ? find(id) : null;
     byId("book-title").textContent = b ? "Kitabı düzenle" : "Kitap ekle";
     byId("f-title").value = b ? (b.t || "") : "";
     byId("f-author").value = b ? (b.a || "") : "";
@@ -744,7 +1326,7 @@
     byId("f-note").value = b ? (b.n || "") : "";
     byId("f-title-err").hidden = true;
     byId("f-del").hidden = !b;
-    setStatus(b ? b.s : (ui.status !== "all" ? ui.status : "plan"));
+    setStatusSeg(b ? b.s : (ui.status !== "all" ? ui.status : "plan"));
     setRate(b ? (b.r || 0) : 0);
     openSheet("ov-book");
     setTimeout(function () { if (!b) byId("f-title").focus(); }, 60);
@@ -758,11 +1340,11 @@
       byId("f-title").focus();
       return;
     }
-    var b = editing ? state.books.filter(function (x) { return x.id === editing; })[0] : null;
+    var b = editing ? find(editing) : null;
     var isNew = !b;
     if (isNew) { b = { id: uid() }; state.books.push(b); }
 
-    var prevStatus = b.s;
+    var prev = b.s;
     b.t = title;
     b.a = byId("f-author").value.trim();
     b.s = draft.s;
@@ -773,147 +1355,48 @@
     b.o = byId("f-owner").value.trim() || state.me;
     b.sd = byId("f-start").value || "";
     b.fd = draft.s === "done" ? (byId("f-finish").value || b.fd || iso(0)) : "";
-    if ((b.s === "reading" || b.s === "done") && !b.sd && prevStatus !== b.s) b.sd = iso(0);
+    if ((b.s === "reading" || b.s === "done") && !b.sd && prev !== b.s) b.sd = iso(0);
     b.u = Date.now();
     delete b.ex;
+    delete b.d;
 
     save();
     closeSheets();
     render();
+    pushSoon();
+    if (b.s === "done" && prev !== "done") celebrate();
     toast(isNew ? "“" + title + "” eklendi." : "Kaydedildi.");
   });
 
   byId("f-del").addEventListener("click", function () {
-    if (!editing) return;
-    var b = state.books.filter(function (x) { return x.id === editing; })[0];
+    var b = editing ? find(editing) : null;
     if (!b) return;
     if (!confirm("“" + (b.t || "Bu kitap") + "” silinsin mi?")) return;
-    state.books = state.books.filter(function (x) { return x.id !== editing; });
+    var id = b.id;
+    Object.keys(b).forEach(function (k) { delete b[k]; });
+    b.id = id;
+    b.d = 1;
+    b.u = Date.now();
     save();
     closeSheets();
     render();
+    pushSoon();
     toast("Silindi.");
   });
 
   byId("f-status").addEventListener("click", function (e) {
-    var btn = e.target.closest("button[data-v]");
-    if (btn) setStatus(btn.dataset.v);
+    var b = e.target.closest("button[data-v]");
+    if (b) setStatusSeg(b.dataset.v);
   });
 
   byId("f-rate").addEventListener("click", function (e) {
-    var btn = e.target.closest("button[data-v]");
-    if (btn) setRate(Number(btn.dataset.v));
+    var b = e.target.closest("button[data-v]");
+    if (b) setRate(Number(b.dataset.v));
   });
 
   byId("f-rate-clear").addEventListener("click", function () { setRate(0); });
 
-  /* ---------- share & merge ---------- */
-
-  function encode(obj) {
-    var bytes = new TextEncoder().encode(JSON.stringify(obj));
-    var bin = "";
-    for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
-    return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-  }
-
-  function decode(str) {
-    var b64 = str.replace(/-/g, "+").replace(/_/g, "/");
-    while (b64.length % 4) b64 += "=";
-    var bin = atob(b64);
-    var bytes = new Uint8Array(bin.length);
-    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-    return JSON.parse(new TextDecoder().decode(bytes));
-  }
-
-  function shareLink() {
-    var books = state.books.filter(function (b) { return !b.ex; });
-    if (!books.length) { toast("Gönderilecek kayıt yok."); return; }
-    var url = location.origin + location.pathname + "#p=" +
-      encode({ v: 1, from: state.me, books: books });
-    if (url.length > 60000) { toast("Liste bağlantı için çok uzun."); return; }
-
-    if (navigator.share) {
-      navigator.share({ title: "Kitaplık", text: state.me + " kitap listesini paylaştı", url: url })
-        .catch(function () { copy(url); });
-    } else {
-      copy(url);
-    }
-  }
-
-  function copy(url) {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(url).then(function () {
-        toast("Bağlantı kopyalandı — mesajla gönderebilirsiniz.");
-      }).catch(function () { fallbackCopy(url); });
-    } else {
-      fallbackCopy(url);
-    }
-  }
-
-  function fallbackCopy(url) {
-    var ta = document.createElement("textarea");
-    ta.value = url;
-    ta.setAttribute("readonly", "");
-    ta.style.position = "fixed";
-    ta.style.opacity = "0";
-    document.body.appendChild(ta);
-    ta.select();
-    var ok = false;
-    try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
-    document.body.removeChild(ta);
-    toast(ok ? "Bağlantı kopyalandı." : "Bağlantıyı kopyalayamadım; adres çubuğundan alabilirsiniz.");
-    if (!ok) location.hash = "p=" + encode({ v: 1, from: state.me, books: state.books.filter(function (b) { return !b.ex; }) });
-  }
-
-  function readHash() {
-    var m = /[#&]p=([A-Za-z0-9\-_]+)/.exec(location.hash || "");
-    if (!m) return;
-    try {
-      var data = decode(m[1]);
-      if (data && Array.isArray(data.books) && data.books.length) {
-        incoming = { from: data.from, books: data.books };
-      }
-    } catch (e) {
-      toast("Gelen bağlantı okunamadı.");
-    }
-    history.replaceState(null, "", location.pathname + location.search);
-  }
-
-  function merge() {
-    if (!incoming) return;
-    var added = 0, updated = 0;
-    incoming.books.forEach(function (inc) {
-      if (!inc || !inc.id || !inc.t) return;
-      var mine = state.books.filter(function (b) { return b.id === inc.id; })[0];
-      if (!mine) {
-        state.books.push({
-          id: String(inc.id), t: String(inc.t), a: inc.a ? String(inc.a) : "",
-          s: STATUS[inc.s] ? inc.s : "plan", p: num(inc.p), c: num(inc.c),
-          r: Math.max(0, Math.min(5, num(inc.r))), n: inc.n ? String(inc.n) : "",
-          o: inc.o ? String(inc.o) : (incoming.from || "Eşim"),
-          sd: inc.sd || "", fd: inc.fd || "", u: num(inc.u) || Date.now()
-        });
-        added++;
-      } else if ((inc.u || 0) > (mine.u || 0)) {
-        mine.t = String(inc.t); mine.a = inc.a ? String(inc.a) : "";
-        mine.s = STATUS[inc.s] ? inc.s : mine.s;
-        mine.p = num(inc.p); mine.c = num(inc.c);
-        mine.r = Math.max(0, Math.min(5, num(inc.r)));
-        mine.n = inc.n ? String(inc.n) : "";
-        mine.o = inc.o ? String(inc.o) : mine.o;
-        mine.sd = inc.sd || ""; mine.fd = inc.fd || "";
-        mine.u = num(inc.u);
-        delete mine.ex;
-        updated++;
-      }
-    });
-    incoming = null;
-    save();
-    render();
-    toast(added + " kitap eklendi" + (updated ? ", " + updated + " güncellendi" : "") + ".");
-  }
-
-  /* ---------- events ---------- */
+  /* ---------------- olaylar ---------------- */
 
   el.tabs.addEventListener("click", function (e) {
     var b = e.target.closest(".tab");
@@ -943,58 +1426,70 @@
   });
 
   function onNoticeClick(e) {
-    var t = e.target;
-    if (t.id === "n-merge") merge();
-    else if (t.id === "n-skip") { incoming = null; renderNotices(); }
-    else if (t.id === "n-clearex") {
+    var id = e.target.id;
+    if (id === "n-pair") acceptPair();
+    else if (id === "n-merge") mergeIncoming();
+    else if (id === "n-skip") { pairing = null; renderNotices(); }
+    else if (id === "n-skip2") { incoming = null; renderNotices(); }
+    else if (id === "n-retry") syncOnce(true).then(schedule);
+    else if (id === "n-clearex") {
       state.books = state.books.filter(function (b) { return !b.ex; });
       save(); render(); toast("Örnekler silindi.");
-    } else if (t.id === "n-hide") {
+    } else if (id === "n-hide") {
       state.hints.a2hs = 1; save(); renderNotices();
     }
   }
-
   el.notices.addEventListener("click", onNoticeClick);
   el.hintBottom.addEventListener("click", onNoticeClick);
 
   byId("btn-add").addEventListener("click", function () { openBook(null); });
-  byId("btn-share").addEventListener("click", shareLink);
-  byId("s-share").addEventListener("click", shareLink);
-
-  byId("btn-settings").addEventListener("click", function () {
-    byId("s-me").value = state.me;
-    var real = state.books.filter(function (b) { return !b.ex; }).length;
-    byId("s-count").textContent = real + " kayıt bu telefonda saklanıyor.";
-    openSheet("ov-set");
-  });
+  byId("s-connect").addEventListener("click", enableSync);
+  byId("s-disconnect").addEventListener("click", disableSync);
+  byId("s-pair").addEventListener("click", sendPair);
+  byId("s-share").addEventListener("click", shareList);
 
   byId("s-me").addEventListener("change", function () {
-    var v = byId("s-me").value.trim();
-    state.me = v || "Ben";
+    state.me = byId("s-me").value.trim() || "Ben";
     save();
-    el.meName.textContent = state.me;
+    renderTop();
   });
 
   byId("s-reset").addEventListener("click", function () {
-    if (!confirm("Bütün kitaplar bu telefondan silinsin mi? Geri alınamaz.")) return;
-    state.books = [];
+    if (!confirm("Bütün kitaplar silinsin mi? Canlı senkron açıksa eşinizin listesinden de kalkar. Geri alınamaz.")) return;
+    var now = Date.now();
+    state.books = state.books.filter(function (b) { return !b.ex; }).map(function (b) {
+      return { id: b.id, d: 1, u: now };
+    });
     save();
     closeSheets();
     render();
+    pushSoon();
     toast("Kitaplık boşaltıldı.");
   });
 
   document.addEventListener("click", function (e) {
-    if (e.target.matches("[data-close]")) closeSheets();
-    if (e.target.classList.contains("overlay")) closeSheets();
+    if (e.target.matches("[data-close]") || e.target.classList.contains("overlay")) closeSheets();
   });
 
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") closeSheets();
   });
 
+  document.addEventListener("visibilitychange", function () {
+    if (!cfg()) return;
+    if (document.hidden) { clearTimeout(sync.timer); schedule(); }
+    else syncOnce(false).then(schedule);
+  });
+
+  window.addEventListener("online", function () {
+    if (cfg()) syncOnce(true).then(schedule);
+  });
+
+  /* ---------------- açılış ---------------- */
+
   readHash();
   render();
+  if (cfg()) { setStatus("connecting"); syncOnce(true).then(schedule); }
 
   if (document.querySelector('link[rel="manifest"]') && "serviceWorker" in navigator) {
     window.addEventListener("load", function () {
