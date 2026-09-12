@@ -19,11 +19,13 @@ Kayıt yok, giriş yok, sunucu yok. Linki açan doğrudan kullanmaya başlar.
 
 ## Canlı senkron nasıl çalışıyor?
 
-- *Canlı senkronu aç* denildiğinde uygulama, hesap gerektirmeyen ücretsiz bir bulut depoda (önce `kvdb.io`, olmazsa `jsonblob.com`) rastgele kimlikli bir "oda" açar ve listeyi oraya yazar.
-- Her telefon odayı 5 saniyede bir okur (sekme arkadayken 45 saniye), gelen kayıtları işler ve kendi değişikliklerini yazar.
-- Çakışma çözümü kitap bazında **en son güncellenen kazanır** (`u` alanı). Silmeler mezar taşı (`d:1`) olarak yazıldığı için karşı tarafta da silinir.
-- Her telefonda yerel bir kopya (LocalStorage) her zaman durur; internet ya da servis kesilse bile kayıtlar kaybolmaz, bağlantı gelince kendiliğinden eşitlenir.
-- Odaya yalnızca eşleşme linkindeki rastgele oda kodunu bilen ulaşabilir. Veriler şifrelenmediği için özel notları buraya yazmamak iyi olur.
+- *Canlı senkronu aç* denildiğinde uygulama rastgele isimli bir "oda" (ntfy.sh konusu) üretir — kayıt, hesap ya da sunucu kurulumu yok.
+- Liste, odaya tek bir mesaj olarak yayınlanır (gerektiğinde gzip'lenip base64 ile). Karşı taraf `EventSource` (SSE) ile aynı odayı dinlediği için değişiklik **anında** düşer; ayrıca emniyet payı olarak arada bir yoklama yapılır (akış açıkken 60 sn, sekme arkadayken 90 sn, akış yoksa 5 sn).
+- Çakışma çözümü kitap bazında **en son güncellenen kazanır** (`u` alanı). Silmeler mezar taşı (`d:1`) olarak taşındığı için karşı tarafta da silinir.
+- Depo sırası `PROVIDER_ORDER` ile belirlenir: `ntfy` (öntanımlı, ön uçuş/CORS gerektirmez), sonra `jsonblob`, sonra `kvdb`. İlk çalışan seçilir; hepsi başarısız olursa hata nedenleri ekranda yazılır.
+- **Bağlantıyı sına** düğmesi her deponun bu cihazdan çalışıp çalışmadığını tek tek dener ve sonucu listeler — hata ayıklamanın en kısa yolu.
+- Her telefonda yerel kopya (LocalStorage) her zaman durur. Oda geçmişi ntfy.sh'te ~12 saat tutulur; uygulama her açılışta kendi listesini yeniden yayınladığı için geçmiş düşse de veri kaybolmaz, iki taraf birleşerek yakınsar.
+- Odaya yalnızca eşleşme linkindeki rastgele oda adını bilen ulaşabilir. Veriler şifrelenmez; özel notları buraya yazmamak iyi olur.
 
 ## Teknik
 
