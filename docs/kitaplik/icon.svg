@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Kitaplık">
+  <rect width="512" height="512" rx="112" fill="#17594a"/>
+  <g transform="translate(96 112)">
+    <rect x="0" y="0" width="72" height="288" rx="10" fill="#eff1ec"/>
+    <rect x="88" y="34" width="72" height="254" rx="10" fill="#b87333"/>
+    <rect x="176" y="66" width="72" height="222" rx="10" fill="#dbe8e2"/>
+    <rect x="0" y="288" width="320" height="16" rx="8" fill="#0d3b31"/>
+  </g>
+</svg>

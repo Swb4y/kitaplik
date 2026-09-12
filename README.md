@@ -92,3 +92,20 @@ Bu komut uygulamayı `docs/` klasörüne derler. Repo ayarlarından **Settings �
 - Ders içerikleri `src/data/units.ts` dosyasındadır; yeni ünite eklemek için bu dosyaya ekleme yapmak yeterlidir.
 - İlerleme yalnızca kullanılan cihazda, LocalStorage'da saklanır.
 - Telaffuz için tarayıcının Web Speech API desteği kullanılır (tüm modern tarayıcılarda mevcuttur).
+
+---
+
+## 📚 Kitaplık — ortak okuma günlüğü
+
+Bu repoda, English Quest'ten bağımsız çalışan ikinci bir mini uygulama var: **Kitaplık**. İki kişinin (ör. bir çiftin) hangi kitabı bitirdiğini, hangisini okuduğunu ve sırada ne olduğunu takip etmesi için tasarlandı.
+
+- **Adres:** `docs/kitaplik/` → yayında `https://swb4y.github.io/english-quest/kitaplik/`
+- **Kayıt/giriş yok:** linki açan herkes doğrudan kullanır
+- **Veri:** yalnızca kullanılan cihazın LocalStorage'ında saklanır (sunucu yok)
+- **Eşleşme:** “Listeyi gönder” butonu, tüm kayıtları bağlantının içine gömerek paylaşır; karşı taraf linki açınca “Listeye ekle” diyerek kendi listesiyle birleştirir (aynı kayıt iki tarafta varsa en son güncellenen kazanır)
+- **PWA:** manifest + service worker; Safari'de *Paylaş → Ana Ekrana Ekle* ile uygulama gibi açılır ve çevrimdışı çalışır
+- **Tek dosya:** `docs/kitaplik/index.html` (derleme adımı yok, bağımlılık yok)
+
+Kitap kaydında tutulanlar: ad, yazar, durum (Sırada / Okuyorum / Bitirdim / Bıraktım), sayfa sayısı ve kaçıncı sayfada olunduğu, 5 üzerinden puan, başlama ve bitirme tarihi, not ve okuyan kişi.
+
+> Dikkat: `npm run build:pages` komutu `docs/` klasörünü **tamamen temizleyerek** yeniden derler (`--emptyOutDir`). English Quest'i yeniden derlemeden önce `docs/kitaplik/` klasörünü yedekleyin.
