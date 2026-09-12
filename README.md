@@ -2,7 +2,7 @@
 
 **Kitaplık**, iki kişinin (ör. bir çiftin) kitaplarını birlikte takip etmesi için yapılmış küçük bir web uygulamasıdır. Hangi kitabı bitirdiniz, hangisini okuyorsunuz, sırada ne var — hepsi tek listede.
 
-👉 **Yayındaki adres:** https://swb4y.github.io/english-quest/
+👉 **Yayındaki adres:** https://swb4y.github.io/kitaplik/
 
 Kayıt yok, giriş yok, sunucu yok. Linki açan doğrudan kullanmaya başlar.
 
@@ -46,4 +46,4 @@ npx http-server docs -p 8080
 
 GitHub Pages, `main` dalının `docs/` klasöründen yayın yapar (**Settings → Pages → Deploy from a branch → main / docs**). `docs/` içindeki dosyaları değiştirip `main`'e push etmek yeterlidir; birkaç dakika içinde yayına girer.
 
-Tüm dosya yolları göreli olduğundan uygulama, depo adı değişse de (adres `…github.io/yeni-ad/` olur) çalışmaya devam eder.
+Tüm dosya yolları görelidir; uygulama depo adı değişse de (adres `…github.io/yeni-ad/` olur) çalışmaya devam eder.
